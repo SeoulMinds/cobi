@@ -194,6 +194,37 @@ async def get_messages(user_id: str | None = None, limit: int = 50):
         )
 
 
+@app.get("/api/products/{product_id}")
+async def get_product(product_id: str):
+    """Retrieve a single product by Mongo _id or product_id."""
+    if db is None:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Database connection failed")
+
+    coll = db.get_collection("products")
+    try:
+        # Try by _id first (as string) then by product_id
+        from bson import ObjectId
+
+        query = None
+        try:
+            query = {"_id": ObjectId(product_id)}
+        except Exception:
+            query = {"product_id": product_id}
+
+        doc = await coll.find_one(query)
+        if not doc:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        # Convert _id to string
+        doc["id"] = str(doc.get("_id"))
+        doc.pop("_id", None)
+        return doc
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/")
 async def root():
     """Root endpoint."""

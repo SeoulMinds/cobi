@@ -12,7 +12,6 @@ services:
     command: ["npm", "run", "dev"]
     volumes:
       - ./frontend:/cobi/frontend:cached
-      - /cobi/frontend/node_modules
 
   mongo-express:
     restart: "no"

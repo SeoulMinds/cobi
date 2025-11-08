@@ -41,6 +41,8 @@ cp frontend/.env.example frontend/.env.local
 
 ### Open in VS Code Dev Container
 
+**Prerequisite:** Ensure the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) is installed in VS Code.
+
 1. Open the project folder in VS Code
 2. Press `Ctrl + Shift + P` → **Dev Containers: Reopen in Container**
 3. Wait for the build to complete
