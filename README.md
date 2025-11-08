@@ -2,7 +2,6 @@
 
 An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
 
-
 **Tech Stack:**
 - 🔙 **Backend:** FastAPI + Python 3.11 + MongoDB + Motor (async driver)
 - 🤖 **AI/LLM:** Google Gemini 2.5 Flash via LangChain
@@ -20,6 +19,7 @@ An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
 - Docker Desktop installed and running
 - VS Code (optional, for Dev Container support)
 - Git
+- **Note:** For Windows users, our scripts require a Unix-like environment. Install WSL (Windows Subsystem for Linux) to ensure compatibility. Follow the [official guide](https://learn.microsoft.com/en-us/windows/wsl/install) for setup.
 
 ### Clone and Setup
 
