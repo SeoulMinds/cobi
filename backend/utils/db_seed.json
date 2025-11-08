@@ -1,0 +1,1848 @@
+[
+  {
+    "product_id": "P00001",
+    "title": "모던하우스 남성 롱코트",
+    "brand": "모던하우스",
+    "category": [
+      "패션",
+      "men",
+      "coat"
+    ],
+    "price": 55200,
+    "original_price": 92000,
+    "discount_rate": 40,
+    "currency": "KRW",
+    "stock": 968,
+    "seller": {
+      "seller_id": "S8993",
+      "name": "빈티지하우스",
+      "rating": 4.8,
+      "total_sales": 1276,
+      "response_rate": 94,
+      "response_time_hours": 3,
+      "location": "부산",
+      "badges": [
+        "우수셀러",
+        "인증판매자"
+      ],
+      "business_info": {
+        "business_name": "에브리데이룩 주식회사",
+        "registration_number": "829-61-63602"
+      }
+    },
+    "description": "심플하고 모던한 디자인의 남성 롱코트. 데일리 필수 아이템!",
+    "images": [
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/0e35/5b43cdfeb58f8f0a9ac817510506d2dfe0b94cc7804aad7922288aae6e0a.jpg",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6322/ba0eb7201930e96bfb9496fa0f4c03808db234afead17ef72c5762bd8830.jpg",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/7ca8/01e7a67ae67b9eb09d5d41e521e5f79735c4d68400bb32e202e62b0d24c3.jpg"
+    ],
+    "attributes": {
+      "color": "브라운",
+      "size": "XXL",
+      "material": "린넨",
+      "season": "사계절",
+      "gender": "men",
+      "made_in": "중국"
+    },
+    "options": [
+      {
+        "color": "베이지",
+        "size": "L",
+        "stock": 449,
+        "additional_price": 0
+      },
+      {
+        "color": "그레이",
+        "size": "S",
+        "stock": 436,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "일반배송",
+      "courier": "경동택배",
+      "delivery_time_days": 2,
+      "shipping_fee": 3000,
+      "remote_area_fee": {
+        "jeju": 5000,
+        "island": 5000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 6500,
+      "exchange_fee": 2500,
+      "free_return": false,
+      "return_shipping_fee": 3000,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.5,
+      "count": 1088,
+      "distribution": {
+        "5": 544,
+        "4": 272,
+        "3": 163,
+        "2": 76,
+        "1": 32
+      }
+    },
+    "reviews": {
+      "photo_review_count": 251,
+      "with_text_count": 732
+    },
+    "tags": [
+      "모던",
+      "클래식",
+      "캐주얼"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 0,
+    "question_count": 57,
+    "created_at": "2025-10-11 21:52:39",
+    "last_updated": "2025-10-14 21:52:39",
+    "is_soldout": true,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00002",
+    "title": "노스페이스 남성 싱글 코트",
+    "brand": "노스페이스",
+    "category": [
+      "패션",
+      "men",
+      "coat"
+    ],
+    "price": 154700,
+    "original_price": 221000,
+    "discount_rate": 30,
+    "currency": "KRW",
+    "stock": 865,
+    "seller": {
+      "seller_id": "S3937",
+      "name": "패션플러스",
+      "rating": 3.8,
+      "total_sales": 3044,
+      "response_rate": 87,
+      "response_time_hours": 2,
+      "location": "서울",
+      "badges": [],
+      "business_info": {
+        "business_name": "데일리마켓 주식회사",
+        "registration_number": "507-96-79093"
+      }
+    },
+    "description": "스타일리시한 남성 싱글 코트으로 포인트를 주세요. 센스있는 선택!",
+    "images": [
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/0fd7/1e47da27303ee8bfb267bf2b11c36b436f45d4eeed63b21448156180272f.jpg",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/0768/61bda418b6c888818e4021b9d70f663c0b427bc5a4da01353f27421b9006.jpg",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/0f1b/ea91d8c84cdbad737b2f50a0bbeece1675ed30eaeeca86818ce538ff6b67.jpg"
+    ],
+    "attributes": {
+      "color": "베이지",
+      "size": "XXL",
+      "material": "데님",
+      "season": "겨울",
+      "gender": "men",
+      "made_in": "베트남"
+    },
+    "options": [
+      {
+        "color": "그린",
+        "size": "L",
+        "stock": 49,
+        "additional_price": 2000
+      },
+      {
+        "color": "베이지",
+        "size": "XXL",
+        "stock": 163,
+        "additional_price": 1000
+      },
+      {
+        "color": "카키",
+        "size": "L",
+        "stock": 413,
+        "additional_price": 0
+      },
+      {
+        "color": "블랙",
+        "size": "XL",
+        "stock": 398,
+        "additional_price": 2000
+      }
+    ],
+    "shipping": {
+      "method": "새벽배송",
+      "courier": "우체국택배",
+      "delivery_time_days": 2,
+      "shipping_fee": 3500,
+      "remote_area_fee": {
+        "jeju": 5000,
+        "island": 3000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 2500,
+      "exchange_fee": 3500,
+      "free_return": false,
+      "return_shipping_fee": 3000,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.5,
+      "count": 349,
+      "distribution": {
+        "5": 174,
+        "4": 87,
+        "3": 52,
+        "2": 24,
+        "1": 10
+      }
+    },
+    "reviews": {
+      "photo_review_count": 72,
+      "with_text_count": 232
+    },
+    "tags": [
+      "클래식",
+      "캐주얼"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 0,
+    "question_count": 75,
+    "created_at": "2025-10-13 21:52:39",
+    "last_updated": "2025-10-22 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00003",
+    "title": "모던하우스 남성 가죽자켓",
+    "brand": "모던하우스",
+    "category": [
+      "패션",
+      "men",
+      "jacket"
+    ],
+    "price": 131600,
+    "original_price": 188000,
+    "discount_rate": 30,
+    "currency": "KRW",
+    "stock": 661,
+    "seller": {
+      "seller_id": "S2126",
+      "name": "컴포트샵",
+      "rating": 4.7,
+      "total_sales": 875,
+      "response_rate": 98,
+      "response_time_hours": 3,
+      "location": "대구",
+      "badges": [],
+      "business_info": {
+        "business_name": "패션플러스 주식회사",
+        "registration_number": "302-46-99880"
+      }
+    },
+    "description": "프리미엄 소재로 제작된 남성 가죽자켓. 고급스러운 무드를 연출하세요.",
+    "images": [
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e834/8190e9575913aaf48f38234592bda72085576221b5cc1a97b1bad7accd13.jpg",
+      "http://image1.coupangcdn.com/image/vendor_inventory/293d/29a644442e25712f0f813d94f7865f03322e806daa19b6e790028a9c42ca.png"
+    ],
+    "attributes": {
+      "color": "레드",
+      "size": "Free",
+      "material": "폴리에스터",
+      "season": "겨울",
+      "gender": "men",
+      "made_in": "인도네시아"
+    },
+    "options": [
+      {
+        "color": "그린",
+        "size": "Free",
+        "stock": 212,
+        "additional_price": 1000
+      },
+      {
+        "color": "베이지",
+        "size": "L",
+        "stock": 271,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "Free",
+        "stock": 358,
+        "additional_price": 1000
+      }
+    ],
+    "shipping": {
+      "method": "무료배송",
+      "courier": "경동택배",
+      "delivery_time_days": 2,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 2500,
+      "exchange_fee": 6500,
+      "free_return": false,
+      "return_shipping_fee": 2500,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.7,
+      "count": 1945,
+      "distribution": {
+        "5": 972,
+        "4": 486,
+        "3": 291,
+        "2": 136,
+        "1": 58
+      }
+    },
+    "reviews": {
+      "photo_review_count": 724,
+      "with_text_count": 1307
+    },
+    "tags": [
+      "베이직",
+      "캐주얼"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 10,
+    "question_count": 38,
+    "created_at": "2025-10-14 21:52:39",
+    "last_updated": "2025-10-15 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00004",
+    "title": "29CM 남성 봄버자켓",
+    "brand": "29CM",
+    "category": [
+      "패션",
+      "men",
+      "jacket"
+    ],
+    "price": 109000,
+    "original_price": 109000,
+    "discount_rate": 0,
+    "currency": "KRW",
+    "stock": 493,
+    "seller": {
+      "seller_id": "S8738",
+      "name": "프레시룩",
+      "rating": 4.2,
+      "total_sales": 2383,
+      "response_rate": 90,
+      "response_time_hours": 24,
+      "location": "인천",
+      "badges": [
+        "파워셀러",
+        "우수셀러"
+      ],
+      "business_info": {
+        "business_name": "스마트패션 주식회사",
+        "registration_number": "708-61-65371"
+      }
+    },
+    "description": "편안한 착용감의 남성 봄버자켓. 활동성이 좋아 일상에서 유용해요.",
+    "images": [
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/301419110940071-d13c8ee4-22bb-402c-ae35-ec69eced5e4d.jpg",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/304189900468863-16ab20cb-979e-44aa-a958-8ad415b5ad56.jpg"
+    ],
+    "attributes": {
+      "color": "블루",
+      "size": "L",
+      "material": "면",
+      "season": "겨울",
+      "gender": "men",
+      "made_in": "중국"
+    },
+    "options": [
+      {
+        "color": "화이트",
+        "size": "Free",
+        "stock": 68,
+        "additional_price": 2000
+      },
+      {
+        "color": "화이트",
+        "size": "M",
+        "stock": 38,
+        "additional_price": 0
+      },
+      {
+        "color": "화이트",
+        "size": "S",
+        "stock": 380,
+        "additional_price": 1000
+      },
+      {
+        "color": "네이비",
+        "size": "XL",
+        "stock": 30,
+        "additional_price": 0
+      },
+      {
+        "color": "네이비",
+        "size": "M",
+        "stock": 278,
+        "additional_price": 0
+      },
+      {
+        "color": "네이비",
+        "size": "XXL",
+        "stock": 451,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "S",
+        "stock": 343,
+        "additional_price": 1000
+      },
+      {
+        "color": "레드",
+        "size": "Free",
+        "stock": 165,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "L",
+        "stock": 128,
+        "additional_price": 0
+      },
+      {
+        "color": "그린",
+        "size": "XL",
+        "stock": 358,
+        "additional_price": 0
+      },
+      {
+        "color": "그린",
+        "size": "M",
+        "stock": 103,
+        "additional_price": 0
+      },
+      {
+        "color": "그린",
+        "size": "Free",
+        "stock": 6,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "무료배송",
+      "courier": "경동택배",
+      "delivery_time_days": 4,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 6500,
+      "exchange_fee": 3500,
+      "free_return": false,
+      "return_shipping_fee": 2500,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.2,
+      "count": 135,
+      "distribution": {
+        "5": 67,
+        "4": 33,
+        "3": 20,
+        "2": 9,
+        "1": 4
+      }
+    },
+    "reviews": {
+      "photo_review_count": 31,
+      "with_text_count": 89
+    },
+    "tags": [
+      "캐주얼",
+      "빈티지"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 0,
+    "question_count": 94,
+    "created_at": "2025-10-08 21:52:39",
+    "last_updated": "2025-10-11 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00005",
+    "title": "K2 남성 운동화",
+    "brand": "K2",
+    "category": [
+      "패션",
+      "men",
+      "sneakers"
+    ],
+    "price": 38950,
+    "original_price": 41000,
+    "discount_rate": 5,
+    "currency": "KRW",
+    "stock": 57,
+    "seller": {
+      "seller_id": "S6848",
+      "name": "베이직스토어",
+      "rating": 4.4,
+      "total_sales": 8197,
+      "response_rate": 89,
+      "response_time_hours": 3,
+      "location": "광주",
+      "badges": [
+        "우수셀러"
+      ],
+      "business_info": {
+        "business_name": "심플스토어 주식회사",
+        "registration_number": "823-54-87325"
+      }
+    },
+    "description": "고급스러운 남성 운동화입니다. 데일리룩으로 완벽한 아이템이에요.",
+    "images": [
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1f71/e3490ea530316759095783d333b06ed9e781e7f316bf7a1f72604207652f.png",
+      "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/9f68/dab5a02f5c787ec5f8119d9b7b33e9edfd9c178f0ea270639636c78a6301.JPG"
+    ],
+    "attributes": {
+      "color": "블랙",
+      "size": "M",
+      "material": "린넨",
+      "season": "사계절",
+      "gender": "men",
+      "made_in": "방글라데시"
+    },
+    "options": [
+      {
+        "color": "화이트",
+        "size": "S",
+        "stock": 272,
+        "additional_price": 2000
+      }
+    ],
+    "shipping": {
+      "method": "일반배송",
+      "courier": "롯데택배",
+      "delivery_time_days": 4,
+      "shipping_fee": 3000,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 6500,
+      "exchange_fee": 6500,
+      "free_return": false,
+      "return_shipping_fee": 3000,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.0,
+      "count": 1898,
+      "distribution": {
+        "5": 949,
+        "4": 474,
+        "3": 284,
+        "2": 132,
+        "1": 56
+      }
+    },
+    "reviews": {
+      "photo_review_count": 628,
+      "with_text_count": 1172
+    },
+    "tags": [
+      "미니멀",
+      "편안한",
+      "베이직",
+      "모던"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 10,
+    "question_count": 7,
+    "created_at": "2025-10-14 21:52:39",
+    "last_updated": "2025-10-23 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00006",
+    "title": "뉴발란스 남성 농구화",
+    "brand": "뉴발란스",
+    "category": [
+      "패션",
+      "men",
+      "sneakers"
+    ],
+    "price": 74000,
+    "original_price": 74000,
+    "discount_rate": 0,
+    "currency": "KRW",
+    "stock": 567,
+    "seller": {
+      "seller_id": "S2167",
+      "name": "엘레강스샵",
+      "rating": 4.0,
+      "total_sales": 480,
+      "response_rate": 92,
+      "response_time_hours": 6,
+      "location": "부산",
+      "badges": [
+        "인증판매자"
+      ],
+      "business_info": {
+        "business_name": "프레시룩 주식회사",
+        "registration_number": "693-84-20218"
+      }
+    },
+    "description": "실용적이면서 멋스러운 남성 농구화. 가성비 최고 상품입니다.",
+    "images": [
+      "https://image.coupang.com/image/retail/images/1510630.jpg",
+      "https://image.coupang.com/image/retail/images/4106458.jpg",
+      "https://image.coupang.com/image/retail/images/3430454.jpg",
+      "https://image.coupang.com/image/retail/images/3115788.jpg",
+      "https://image.coupang.com/image/retail/images/1892103.jpg",
+      "https://image.coupang.com/image/retail/images/2862146.jpg",
+      "https://image.coupang.com/image/retail/images/9382887.jpg"
+    ],
+    "attributes": {
+      "color": "블랙",
+      "size": "L",
+      "material": "린넨",
+      "season": "여름",
+      "gender": "men",
+      "made_in": "중국"
+    },
+    "options": [
+      {
+        "color": "화이트",
+        "size": "Free",
+        "stock": 316,
+        "additional_price": 2000
+      },
+      {
+        "color": "블루",
+        "size": "L",
+        "stock": 222,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "새벽배송",
+      "courier": "경동택배",
+      "delivery_time_days": 4,
+      "shipping_fee": 2500,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 3500,
+      "exchange_fee": 2500,
+      "free_return": false,
+      "return_shipping_fee": 2500,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.7,
+      "count": 484,
+      "distribution": {
+        "5": 242,
+        "4": 121,
+        "3": 72,
+        "2": 33,
+        "1": 14
+      }
+    },
+    "reviews": {
+      "photo_review_count": 136,
+      "with_text_count": 375
+    },
+    "tags": [
+      "스트릿",
+      "캐주얼",
+      "트렌디",
+      "편안한",
+      "베이직"
+    ],
+    "coupons_available": true,
+    "wow_member_discount": 5,
+    "question_count": 96,
+    "created_at": "2025-10-14 21:52:39",
+    "last_updated": "2025-10-19 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00007",
+    "title": "에이블리 여성 코트",
+    "brand": "에이블리",
+    "category": [
+      "패션",
+      "women",
+      "coat"
+    ],
+    "price": 61200,
+    "original_price": 72000,
+    "discount_rate": 15,
+    "currency": "KRW",
+    "stock": 786,
+    "seller": {
+      "seller_id": "S9078",
+      "name": "캐주얼마켓",
+      "rating": 4.7,
+      "total_sales": 6462,
+      "response_rate": 96,
+      "response_time_hours": 12,
+      "location": "부산",
+      "badges": [
+        "인증판매자",
+        "파워셀러"
+      ],
+      "business_info": {
+        "business_name": "럭셔리몰 주식회사",
+        "registration_number": "100-54-32970"
+      }
+    },
+    "description": "심플하고 모던한 디자인의 여성 코트. 데일리 필수 아이템!",
+    "images": [
+      "https://image.coupang.com/image/retail/images/6964985.jpg",
+      "https://image.coupang.com/image/retail/images/2978142.jpg",
+      "https://image.coupang.com/image/retail/images/2981987.jpg",
+      "https://image.coupang.com/image/retail/images/6925386.jpg",
+      "https://image.coupang.com/image/retail/images/7603699.jpg",
+      "https://image.coupang.com/image/retail/images/9323633.jpg",
+      "https://image.coupang.com/image/retail/images/3418747.jpg"
+    ],
+    "attributes": {
+      "color": "그레이",
+      "size": "XL",
+      "material": "가죽",
+      "season": "겨울",
+      "gender": "women",
+      "made_in": "인도네시아"
+    },
+    "options": [
+      {
+        "color": "네이비",
+        "size": "XXL",
+        "stock": 90,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "S",
+        "stock": 292,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "무료배송",
+      "courier": "우체국택배",
+      "delivery_time_days": 2,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.9,
+      "count": 1940,
+      "distribution": {
+        "5": 970,
+        "4": 485,
+        "3": 291,
+        "2": 135,
+        "1": 58
+      }
+    },
+    "reviews": {
+      "photo_review_count": 599,
+      "with_text_count": 1468
+    },
+    "tags": [
+      "스트릿",
+      "모던",
+      "럭셔리",
+      "캐주얼",
+      "베이직"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 0,
+    "question_count": 8,
+    "created_at": "2025-11-02 21:52:39",
+    "last_updated": "2025-11-06 21:52:39",
+    "is_soldout": false,
+    "is_new": true,
+    "is_best": true
+  },
+  {
+    "product_id": "P00008",
+    "title": "아디다스 여성 케이프코트",
+    "brand": "아디다스",
+    "category": [
+      "패션",
+      "women",
+      "coat"
+    ],
+    "price": 53000,
+    "original_price": 53000,
+    "discount_rate": 0,
+    "currency": "KRW",
+    "stock": 488,
+    "seller": {
+      "seller_id": "S7637",
+      "name": "데일리마켓",
+      "rating": 4.8,
+      "total_sales": 7978,
+      "response_rate": 85,
+      "response_time_hours": 24,
+      "location": "대구",
+      "badges": [],
+      "business_info": {
+        "business_name": "클래식하우스 주식회사",
+        "registration_number": "334-74-56300"
+      }
+    },
+    "description": "베이직하면서도 세련된 여성 케이프코트. 어디에나 잘 어울립니다.",
+    "images": [
+      "https://image.coupang.com/image/retail/images/3961269.jpg",
+      "https://image.coupang.com/image/retail/images/6841527.jpg",
+      "https://image.coupang.com/image/retail/images/4271910.jpg"
+    ],
+    "attributes": {
+      "color": "레드",
+      "size": "XXL",
+      "material": "데님",
+      "season": "여름",
+      "gender": "women",
+      "made_in": "한국"
+    },
+    "options": [
+      {
+        "color": "그린",
+        "size": "S",
+        "stock": 377,
+        "additional_price": 2000
+      },
+      {
+        "color": "그린",
+        "size": "L",
+        "stock": 488,
+        "additional_price": 0
+      },
+      {
+        "color": "그린",
+        "size": "XXL",
+        "stock": 66,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "새벽배송",
+      "courier": "우체국택배",
+      "delivery_time_days": 4,
+      "shipping_fee": 3500,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 3000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.2,
+      "count": 814,
+      "distribution": {
+        "5": 407,
+        "4": 203,
+        "3": 122,
+        "2": 56,
+        "1": 24
+      }
+    },
+    "reviews": {
+      "photo_review_count": 177,
+      "with_text_count": 521
+    },
+    "tags": [
+      "트렌디",
+      "베이직",
+      "럭셔리",
+      "미니멀",
+      "클래식"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 0,
+    "question_count": 64,
+    "created_at": "2025-10-22 21:52:39",
+    "last_updated": "2025-10-23 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00009",
+    "title": "노스페이스 여성 크롭자켓",
+    "brand": "노스페이스",
+    "category": [
+      "패션",
+      "women",
+      "jacket"
+    ],
+    "price": 243200,
+    "original_price": 256000,
+    "discount_rate": 5,
+    "currency": "KRW",
+    "stock": 738,
+    "seller": {
+      "seller_id": "S4611",
+      "name": "스타일샵",
+      "rating": 4.3,
+      "total_sales": 6011,
+      "response_rate": 93,
+      "response_time_hours": 12,
+      "location": "경기",
+      "badges": [],
+      "business_info": {
+        "business_name": "프레시룩 주식회사",
+        "registration_number": "378-24-21348"
+      }
+    },
+    "description": "편안한 착용감의 여성 크롭자켓. 활동성이 좋아 일상에서 유용해요.",
+    "images": [
+      "https://image.coupang.com/image/retail/images/3119617.jpg",
+      "https://image.coupang.com/image/retail/images/8255390.jpg",
+      "https://image.coupang.com/image/retail/images/3951582.jpg",
+      "https://image.coupang.com/image/retail/images/3505227.jpg"
+    ],
+    "attributes": {
+      "color": "블루",
+      "size": "L",
+      "material": "스판덱스",
+      "season": "봄",
+      "gender": "women",
+      "made_in": "한국"
+    },
+    "options": [
+      {
+        "color": "블루",
+        "size": "XXL",
+        "stock": 98,
+        "additional_price": 0
+      },
+      {
+        "color": "베이지",
+        "size": "XL",
+        "stock": 25,
+        "additional_price": 1000
+      }
+    ],
+    "shipping": {
+      "method": "로켓배송",
+      "courier": "쿠팡",
+      "delivery_time_days": 1,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": true,
+      "additional_info": "로켓배송 상품으로 빠른 배송이 가능합니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.3,
+      "count": 1397,
+      "distribution": {
+        "5": 698,
+        "4": 349,
+        "3": 209,
+        "2": 97,
+        "1": 41
+      }
+    },
+    "reviews": {
+      "photo_review_count": 345,
+      "with_text_count": 838
+    },
+    "tags": [
+      "미니멀",
+      "럭셔리",
+      "클래식"
+    ],
+    "coupons_available": true,
+    "wow_member_discount": 10,
+    "question_count": 99,
+    "created_at": "2025-10-19 21:52:39",
+    "last_updated": "2025-10-29 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00010",
+    "title": "데일리룩 여성 패딩자켓",
+    "brand": "데일리룩",
+    "category": [
+      "패션",
+      "women",
+      "jacket"
+    ],
+    "price": 197000,
+    "original_price": 197000,
+    "discount_rate": 0,
+    "currency": "KRW",
+    "stock": 372,
+    "seller": {
+      "seller_id": "S6022",
+      "name": "어반스타일",
+      "rating": 3.8,
+      "total_sales": 4939,
+      "response_rate": 92,
+      "response_time_hours": 1,
+      "location": "경기",
+      "badges": [],
+      "business_info": {
+        "business_name": "럭셔리몰 주식회사",
+        "registration_number": "855-69-98519"
+      }
+    },
+    "description": "스타일리시한 여성 패딩자켓으로 포인트를 주세요. 센스있는 선택!",
+    "images": [
+      "https://image.coupang.com/image/retail/images/8378618.jpg",
+      "https://image.coupang.com/image/retail/images/6087396.jpg",
+      "https://image.coupang.com/image/retail/images/6722500.jpg",
+      "https://image.coupang.com/image/retail/images/7704417.jpg",
+      "https://image.coupang.com/image/retail/images/1595438.jpg",
+      "https://image.coupang.com/image/retail/images/6161325.jpg"
+    ],
+    "attributes": {
+      "color": "레드",
+      "size": "XXL",
+      "material": "폴리에스터",
+      "season": "겨울",
+      "gender": "women",
+      "made_in": "한국"
+    },
+    "options": [
+      {
+        "color": "브라운",
+        "size": "XXL",
+        "stock": 79,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "S",
+        "stock": 404,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "M",
+        "stock": 341,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "S",
+        "stock": 435,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "XXL",
+        "stock": 341,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "M",
+        "stock": 417,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "무료배송",
+      "courier": "경동택배",
+      "delivery_time_days": 3,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.7,
+      "count": 9,
+      "distribution": {
+        "5": 4,
+        "4": 2,
+        "3": 1,
+        "2": 0,
+        "1": 0
+      }
+    },
+    "reviews": {
+      "photo_review_count": 2,
+      "with_text_count": 6
+    },
+    "tags": [
+      "모던",
+      "미니멀"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 5,
+    "question_count": 21,
+    "created_at": "2025-09-21 21:52:39",
+    "last_updated": "2025-09-22 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00011",
+    "title": "29CM 미니백",
+    "brand": "29CM",
+    "category": [
+      "패션",
+      "women",
+      "bags"
+    ],
+    "price": 145000,
+    "original_price": 145000,
+    "discount_rate": 0,
+    "currency": "KRW",
+    "stock": 702,
+    "seller": {
+      "seller_id": "S1275",
+      "name": "트렌디몰",
+      "rating": 3.7,
+      "total_sales": 2589,
+      "response_rate": 86,
+      "response_time_hours": 2,
+      "location": "경기",
+      "badges": [],
+      "business_info": {
+        "business_name": "데일리마켓 주식회사",
+        "registration_number": "701-16-33886"
+      }
+    },
+    "description": "트렌디한 디자인의 미니백. 편안한 착용감과 스타일을 동시에!",
+    "images": [
+      "https://image.coupang.com/image/retail/images/4271748.jpg",
+      "https://image.coupang.com/image/retail/images/5986944.jpg",
+      "https://image.coupang.com/image/retail/images/5763630.jpg",
+      "https://image.coupang.com/image/retail/images/6422642.jpg",
+      "https://image.coupang.com/image/retail/images/3906107.jpg"
+    ],
+    "attributes": {
+      "color": "베이지",
+      "size": "XL",
+      "material": "나일론",
+      "season": "봄",
+      "gender": "women",
+      "made_in": "한국"
+    },
+    "options": [
+      {
+        "color": "카키",
+        "size": "M",
+        "stock": 227,
+        "additional_price": 0
+      },
+      {
+        "color": "카키",
+        "size": "XL",
+        "stock": 5,
+        "additional_price": 2000
+      },
+      {
+        "color": "화이트",
+        "size": "M",
+        "stock": 152,
+        "additional_price": 0
+      },
+      {
+        "color": "화이트",
+        "size": "S",
+        "stock": 228,
+        "additional_price": 0
+      },
+      {
+        "color": "그레이",
+        "size": "XL",
+        "stock": 54,
+        "additional_price": 0
+      },
+      {
+        "color": "그레이",
+        "size": "S",
+        "stock": 193,
+        "additional_price": 1000
+      }
+    ],
+    "shipping": {
+      "method": "로켓배송",
+      "courier": "쿠팡",
+      "delivery_time_days": 1,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 5000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": true,
+      "additional_info": "로켓배송 상품으로 빠른 배송이 가능합니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.0,
+      "count": 1724,
+      "distribution": {
+        "5": 862,
+        "4": 431,
+        "3": 258,
+        "2": 120,
+        "1": 51
+      }
+    },
+    "reviews": {
+      "photo_review_count": 456,
+      "with_text_count": 1206
+    },
+    "tags": [
+      "럭셔리",
+      "트렌디",
+      "편안한"
+    ],
+    "coupons_available": true,
+    "wow_member_discount": 5,
+    "question_count": 34,
+    "created_at": "2025-10-12 21:52:39",
+    "last_updated": "2025-10-13 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00012",
+    "title": "29CM 크로스백",
+    "brand": "29CM",
+    "category": [
+      "패션",
+      "women",
+      "bags"
+    ],
+    "price": 82450,
+    "original_price": 97000,
+    "discount_rate": 15,
+    "currency": "KRW",
+    "stock": 262,
+    "seller": {
+      "seller_id": "S6354",
+      "name": "에브리데이룩",
+      "rating": 3.7,
+      "total_sales": 1563,
+      "response_rate": 94,
+      "response_time_hours": 24,
+      "location": "경기",
+      "badges": [
+        "인증판매자"
+      ],
+      "business_info": {
+        "business_name": "트렌디몰 주식회사",
+        "registration_number": "153-56-54592"
+      }
+    },
+    "description": "실용적이면서 멋스러운 크로스백. 가성비 최고 상품입니다.",
+    "images": [
+      "https://image.coupang.com/image/retail/images/9943929.jpg",
+      "https://image.coupang.com/image/retail/images/6937725.jpg",
+      "https://image.coupang.com/image/retail/images/7095905.jpg",
+      "https://image.coupang.com/image/retail/images/7339594.jpg",
+      "https://image.coupang.com/image/retail/images/8112086.jpg"
+    ],
+    "attributes": {
+      "color": "화이트",
+      "size": "S",
+      "material": "폴리에스터",
+      "season": "봄",
+      "gender": "women",
+      "made_in": "한국"
+    },
+    "options": [
+      {
+        "color": "화이트",
+        "size": "XXL",
+        "stock": 127,
+        "additional_price": 0
+      },
+      {
+        "color": "화이트",
+        "size": "L",
+        "stock": 324,
+        "additional_price": 0
+      },
+      {
+        "color": "화이트",
+        "size": "XL",
+        "stock": 368,
+        "additional_price": 0
+      },
+      {
+        "color": "블루",
+        "size": "L",
+        "stock": 230,
+        "additional_price": 0
+      },
+      {
+        "color": "블루",
+        "size": "XL",
+        "stock": 258,
+        "additional_price": 2000
+      },
+      {
+        "color": "블루",
+        "size": "Free",
+        "stock": 233,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "Free",
+        "stock": 447,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "XXL",
+        "stock": 145,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "L",
+        "stock": 350,
+        "additional_price": 1000
+      },
+      {
+        "color": "그레이",
+        "size": "Free",
+        "stock": 435,
+        "additional_price": 0
+      },
+      {
+        "color": "그레이",
+        "size": "L",
+        "stock": 124,
+        "additional_price": 0
+      },
+      {
+        "color": "그레이",
+        "size": "S",
+        "stock": 370,
+        "additional_price": 2000
+      }
+    ],
+    "shipping": {
+      "method": "무료배송",
+      "courier": "CJ대한통운",
+      "delivery_time_days": 3,
+      "shipping_fee": 0,
+      "remote_area_fee": {
+        "jeju": 5000,
+        "island": 3000
+      },
+      "bundle_shipping": false,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 6500,
+      "exchange_fee": 2500,
+      "free_return": false,
+      "return_shipping_fee": 2500,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.8,
+      "count": 217,
+      "distribution": {
+        "5": 108,
+        "4": 54,
+        "3": 32,
+        "2": 15,
+        "1": 6
+      }
+    },
+    "reviews": {
+      "photo_review_count": 67,
+      "with_text_count": 144
+    },
+    "tags": [
+      "트렌디",
+      "캐주얼",
+      "베이직"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 10,
+    "question_count": 97,
+    "created_at": "2025-09-12 21:52:39",
+    "last_updated": "2025-09-21 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00013",
+    "title": "아디다스 여성 러닝화",
+    "brand": "아디다스",
+    "category": [
+      "패션",
+      "women",
+      "sneakers"
+    ],
+    "price": 50400,
+    "original_price": 84000,
+    "discount_rate": 40,
+    "currency": "KRW",
+    "stock": 255,
+    "seller": {
+      "seller_id": "S5370",
+      "name": "클래식하우스",
+      "rating": 3.8,
+      "total_sales": 6687,
+      "response_rate": 95,
+      "response_time_hours": 12,
+      "location": "대전",
+      "badges": [
+        "인증판매자",
+        "우수셀러"
+      ],
+      "business_info": {
+        "business_name": "클래식하우스 주식회사",
+        "registration_number": "856-18-12513"
+      }
+    },
+    "description": "심플하고 모던한 디자인의 여성 러닝화. 데일리 필수 아이템!",
+    "images": [
+      "https://image.coupang.com/image/retail/images/8753049.jpg",
+      "https://image.coupang.com/image/retail/images/8595500.jpg",
+      "https://image.coupang.com/image/retail/images/5147042.jpg",
+      "https://image.coupang.com/image/retail/images/3826006.jpg",
+      "https://image.coupang.com/image/retail/images/8259795.jpg",
+      "https://image.coupang.com/image/retail/images/4502180.jpg"
+    ],
+    "attributes": {
+      "color": "베이지",
+      "size": "S",
+      "material": "폴리에스터",
+      "season": "사계절",
+      "gender": "women",
+      "made_in": "중국"
+    },
+    "options": [
+      {
+        "color": "그린",
+        "size": "L",
+        "stock": 269,
+        "additional_price": 0
+      },
+      {
+        "color": "카키",
+        "size": "M",
+        "stock": 205,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "일반배송",
+      "courier": "로젠택배",
+      "delivery_time_days": 4,
+      "shipping_fee": 2500,
+      "remote_area_fee": {
+        "jeju": 5000,
+        "island": 3000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 3.7,
+      "count": 1357,
+      "distribution": {
+        "5": 678,
+        "4": 339,
+        "3": 203,
+        "2": 94,
+        "1": 40
+      }
+    },
+    "reviews": {
+      "photo_review_count": 405,
+      "with_text_count": 925
+    },
+    "tags": [
+      "스트릿",
+      "모던"
+    ],
+    "coupons_available": true,
+    "wow_member_discount": 10,
+    "question_count": 16,
+    "created_at": "2025-09-27 21:52:39",
+    "last_updated": "2025-09-30 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  },
+  {
+    "product_id": "P00014",
+    "title": "에이블리 여성 캔버스화",
+    "brand": "에이블리",
+    "category": [
+      "패션",
+      "women",
+      "sneakers"
+    ],
+    "price": 53600,
+    "original_price": 67000,
+    "discount_rate": 20,
+    "currency": "KRW",
+    "stock": 531,
+    "seller": {
+      "seller_id": "S4705",
+      "name": "캐주얼마켓",
+      "rating": 4.9,
+      "total_sales": 9919,
+      "response_rate": 96,
+      "response_time_hours": 24,
+      "location": "경기",
+      "badges": [],
+      "business_info": {
+        "business_name": "뉴트렌드 주식회사",
+        "registration_number": "135-36-68319"
+      }
+    },
+    "description": "트렌디한 디자인의 여성 캔버스화. 편안한 착용감과 스타일을 동시에!",
+    "images": [
+      "https://image.coupang.com/image/retail/images/5417900.jpg",
+      "https://image.coupang.com/image/retail/images/1089819.jpg",
+      "https://image.coupang.com/image/retail/images/2603671.jpg",
+      "https://image.coupang.com/image/retail/images/5134183.jpg",
+      "https://image.coupang.com/image/retail/images/2767233.jpg",
+      "https://image.coupang.com/image/retail/images/1877985.jpg"
+    ],
+    "attributes": {
+      "color": "블랙",
+      "size": "L",
+      "material": "데님",
+      "season": "여름",
+      "gender": "women",
+      "made_in": "베트남"
+    },
+    "options": [
+      {
+        "color": "네이비",
+        "size": "XL",
+        "stock": 456,
+        "additional_price": 0
+      },
+      {
+        "color": "레드",
+        "size": "S",
+        "stock": 279,
+        "additional_price": 0
+      },
+      {
+        "color": "브라운",
+        "size": "M",
+        "stock": 352,
+        "additional_price": 0
+      },
+      {
+        "color": "카키",
+        "size": "M",
+        "stock": 491,
+        "additional_price": 0
+      }
+    ],
+    "shipping": {
+      "method": "새벽배송",
+      "courier": "롯데택배",
+      "delivery_time_days": 2,
+      "shipping_fee": 3500,
+      "remote_area_fee": {
+        "jeju": 3000,
+        "island": 3000
+      },
+      "bundle_shipping": true,
+      "rocket_delivery": false,
+      "additional_info": "도서산간 지역 등은 배송에 3-5일이 더 소요될 수 있습니다."
+    },
+    "return_policy": {
+      "return_available": true,
+      "return_period_days": 7,
+      "return_fee": 0,
+      "exchange_fee": 0,
+      "free_return": true,
+      "return_shipping_fee": 0,
+      "conditions": [
+        "상품 수령 후 7일 이내 신청 가능",
+        "제품의 택(TAG) 및 라벨이 훼손되지 않은 경우",
+        "포장 개봉 시 교환/반품이 불가할 수 있습니다"
+      ],
+      "restrictions": [
+        "고객 변심에 의한 반품 시 왕복 배송비 고객 부담",
+        "상품 하자가 아닌 경우 배송비 고객 부담"
+      ]
+    },
+    "ratings": {
+      "average": 4.4,
+      "count": 678,
+      "distribution": {
+        "5": 339,
+        "4": 169,
+        "3": 101,
+        "2": 47,
+        "1": 20
+      }
+    },
+    "reviews": {
+      "photo_review_count": 158,
+      "with_text_count": 438
+    },
+    "tags": [
+      "클래식",
+      "미니멀"
+    ],
+    "coupons_available": false,
+    "wow_member_discount": 10,
+    "question_count": 93,
+    "created_at": "2025-10-06 21:52:39",
+    "last_updated": "2025-10-16 21:52:39",
+    "is_soldout": false,
+    "is_new": false,
+    "is_best": false
+  }
+]

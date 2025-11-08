@@ -8,6 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from pydantic import BaseModel, Field
+from db import seeder
+from db.connection import attach_db_to_app
+from routers import products as products_router
 
 # ============================================================================
 # Configuration
@@ -35,9 +38,27 @@ async def lifespan(app: FastAPI):
     try:
         db_client = AsyncIOMotorClient(MONGODB_URL)
         db = db_client.seoulminds_db
+        # attach to app.state in case routers need it
+        try:
+            attach_db_to_app(app, db_client, dbname=db.name)
+        except Exception:
+            # ignore attach failures here; routers can still access global db
+            pass
         # Verify connection
         await db.command("ping")
         print("✅ Connected to MongoDB")
+        # Attempt automatic seeding in non-production environments
+        try:
+            force = os.getenv("FORCE_DB_SEED", "0") in ("1", "true", "True")
+            env = os.getenv("ENVIRONMENT") or os.getenv("PYTHON_ENV") or os.getenv("FASTAPI_ENV") or os.getenv("ENV") or "development"
+            if env != "production" or force:
+                print("🌱 Running DB auto-seed check...")
+                seed_summary = await seeder.seed_if_empty(db, force=force)
+                print(f"✅ DB seeding result: {seed_summary}")
+            else:
+                print("⚠️ Skipping DB auto-seed in production")
+        except Exception as e:
+            print(f"❌ DB seeding failed: {e}")
     except Exception as e:
         print(f"❌ MongoDB connection failed: {e}")
         raise
@@ -69,6 +90,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# include routers
+app.include_router(products_router.router)
 
 
 # ============================================================================
