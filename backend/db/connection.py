@@ -3,7 +3,7 @@
 This provides a small wrapper to expose the `db` instance on the FastAPI
 app.state so routers can access it easily.
 """
-from typing import Optional
+from fastapi import Request
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
 
@@ -22,3 +22,14 @@ def attach_db_to_app(app, client: AsyncIOMotorClient, dbname: str = "seoulminds_
     db = client[dbname]
     app.state.db = db
     return db
+
+
+async def get_db(request: Request) -> AsyncIOMotorDatabase:
+    """FastAPI dependency to get database instance from request.
+
+    Usage in routers:
+        @router.get("/example")
+        async def example(db: AsyncIOMotorDatabase = Depends(get_db)):
+            ...
+    """
+    return request.app.state.db

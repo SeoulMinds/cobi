@@ -20,14 +20,14 @@ export MONGODB_URI=mongodb://seoulminds:password@localhost:27017/seoulminds_db?a
 export FRONTEND_URL=http://localhost:5173
 
 # Run the server
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --host 0.0.0.0 --port 8001
 ```
 
 ### Docker
 
 ```bash
 docker build -t seoulminds-backend .
-docker run -p 8000:8000 \
+docker run -p 8001:8001 \
   -e MONGODB_URI=mongodb://db:27017/seoulminds_db \
   -e FRONTEND_URL=http://localhost:5173 \
   seoulminds-backend

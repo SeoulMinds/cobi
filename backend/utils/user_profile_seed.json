@@ -1,0 +1,251 @@
+[
+  {
+    "user_id": "logged_user",
+    "feature_weights": {
+      "size": 0.82,
+      "color": 0.68,
+      "material": 0.75,
+      "brand": 0.55,
+      "price": 0.42,
+      "trend": 0.71,
+      "durability": 0.63,
+      "shipping": 0.58
+    },
+    "evidence": [
+      {
+        "feature": "size",
+        "sentence": "핏이 정말 완벽해요. L 사이즈가 딱 맞네요!",
+        "sentiment": "positive",
+        "score": 0.95,
+        "timestamp": "2025-11-07T14:23:15"
+      },
+      {
+        "feature": "material",
+        "sentence": "원단이 부드럽고 고급스러워요. 촉감이 너무 좋습니다.",
+        "sentiment": "positive",
+        "score": 0.88,
+        "timestamp": "2025-11-07T15:10:22"
+      },
+      {
+        "feature": "color",
+        "sentence": "색상이 사진과 동일하고 예뻐요.",
+        "sentiment": "positive",
+        "score": 0.75,
+        "timestamp": "2025-11-06T18:45:30"
+      },
+      {
+        "feature": "shipping",
+        "sentence": "배송이 빨라서 좋았어요. 다음날 바로 받았습니다.",
+        "sentiment": "positive",
+        "score": 0.82,
+        "timestamp": "2025-11-06T09:15:45"
+      },
+      {
+        "feature": "trend",
+        "sentence": "디자인이 트렌디하고 세련됐어요. 요즘 스타일이네요.",
+        "sentiment": "positive",
+        "score": 0.85,
+        "timestamp": "2025-11-05T20:30:12"
+      },
+      {
+        "feature": "price",
+        "sentence": "가격이 좀 비싼 것 같아요. 할인 기다릴걸 그랬네요.",
+        "sentiment": "negative",
+        "score": -0.6,
+        "timestamp": "2025-11-05T16:22:18"
+      },
+      {
+        "feature": "durability",
+        "sentence": "튼튼해 보이고 오래 입을 수 있을 것 같아요.",
+        "sentiment": "positive",
+        "score": 0.78,
+        "timestamp": "2025-11-04T13:40:55"
+      },
+      {
+        "feature": "brand",
+        "sentence": "브랜드 제품이라 믿고 샀는데 역시 좋네요.",
+        "sentiment": "positive",
+        "score": 0.72,
+        "timestamp": "2025-11-04T11:20:33"
+      },
+      {
+        "feature": "size",
+        "sentence": "사이즈가 약간 크게 나온 것 같아요. M으로 살걸 그랬어요.",
+        "sentiment": "negative",
+        "score": -0.4,
+        "timestamp": "2025-11-03T19:15:42"
+      },
+      {
+        "feature": "material",
+        "sentence": "소재가 생각보다 얇아서 겨울용으로는 부족할 듯해요.",
+        "sentiment": "negative",
+        "score": -0.5,
+        "timestamp": "2025-11-03T14:55:28"
+      },
+      {
+        "feature": "color",
+        "sentence": "블랙 컬러가 깔끔하고 어디든 잘 어울려요.",
+        "sentiment": "positive",
+        "score": 0.80,
+        "timestamp": "2025-11-02T17:30:15"
+      },
+      {
+        "feature": "trend",
+        "sentence": "유행 지나면 못 입을 것 같은 디자인이네요.",
+        "sentiment": "negative",
+        "score": -0.55,
+        "timestamp": "2025-11-02T10:25:50"
+      },
+      {
+        "feature": "shipping",
+        "sentence": "배송비가 무료여서 좋았어요. 빠른 배송 감사합니다.",
+        "sentiment": "positive",
+        "score": 0.70,
+        "timestamp": "2025-11-01T21:18:40"
+      },
+      {
+        "feature": "durability",
+        "sentence": "바느질이 튼튼하고 마감 처리가 깔끔해요.",
+        "sentiment": "positive",
+        "score": 0.83,
+        "timestamp": "2025-11-01T15:42:22"
+      },
+      {
+        "feature": "price",
+        "sentence": "가성비 좋아요. 이 가격에 이 품질이면 만족합니다.",
+        "sentiment": "positive",
+        "score": 0.65,
+        "timestamp": "2025-10-31T12:30:18"
+      }
+    ]
+  },
+  {
+    "user_id": "demo_user",
+    "feature_weights": {
+      "size": 0.5,
+      "color": 0.5,
+      "material": 0.5,
+      "brand": 0.5,
+      "price": 0.5,
+      "trend": 0.5,
+      "durability": 0.5,
+      "shipping": 0.5
+    },
+    "evidence": []
+  },
+  {
+    "user_id": "user_fashion_lover",
+    "feature_weights": {
+      "size": 0.65,
+      "color": 0.92,
+      "material": 0.58,
+      "brand": 0.78,
+      "price": 0.35,
+      "trend": 0.95,
+      "durability": 0.48,
+      "shipping": 0.52
+    },
+    "evidence": [
+      {
+        "feature": "trend",
+        "sentence": "최신 트렌드를 반영한 디자인이 마음에 들어요!",
+        "sentiment": "positive",
+        "score": 0.98,
+        "timestamp": "2025-11-07T10:15:30"
+      },
+      {
+        "feature": "color",
+        "sentence": "컬러 조합이 정말 예술이에요. 눈에 확 띄네요.",
+        "sentiment": "positive",
+        "score": 0.95,
+        "timestamp": "2025-11-06T14:20:45"
+      },
+      {
+        "feature": "brand",
+        "sentence": "유명 브랜드라 믿고 구매했어요. 역시 명품은 다르네요.",
+        "sentiment": "positive",
+        "score": 0.90,
+        "timestamp": "2025-11-05T16:30:20"
+      }
+    ]
+  },
+  {
+    "user_id": "user_practical_shopper",
+    "feature_weights": {
+      "size": 0.78,
+      "color": 0.45,
+      "material": 0.88,
+      "brand": 0.38,
+      "price": 0.92,
+      "trend": 0.32,
+      "durability": 0.95,
+      "shipping": 0.82
+    },
+    "evidence": [
+      {
+        "feature": "durability",
+        "sentence": "오래 입을 수 있을 것 같아요. 품질이 탄탄합니다.",
+        "sentiment": "positive",
+        "score": 0.96,
+        "timestamp": "2025-11-07T09:40:15"
+      },
+      {
+        "feature": "price",
+        "sentence": "가격 대비 품질이 훌륭해요. 가성비 최고!",
+        "sentiment": "positive",
+        "score": 0.93,
+        "timestamp": "2025-11-06T11:25:33"
+      },
+      {
+        "feature": "material",
+        "sentence": "원단 품질이 정말 좋아요. 세탁해도 변형 없을 듯해요.",
+        "sentiment": "positive",
+        "score": 0.89,
+        "timestamp": "2025-11-05T13:50:42"
+      },
+      {
+        "feature": "shipping",
+        "sentence": "배송이 빠르고 포장도 꼼꼼해요.",
+        "sentiment": "positive",
+        "score": 0.85,
+        "timestamp": "2025-11-04T15:20:18"
+      }
+    ]
+  },
+  {
+    "user_id": "user_size_conscious",
+    "feature_weights": {
+      "size": 0.96,
+      "color": 0.52,
+      "material": 0.68,
+      "brand": 0.45,
+      "price": 0.58,
+      "trend": 0.48,
+      "durability": 0.62,
+      "shipping": 0.55
+    },
+    "evidence": [
+      {
+        "feature": "size",
+        "sentence": "사이즈 표가 정확해서 딱 맞게 왔어요!",
+        "sentiment": "positive",
+        "score": 0.97,
+        "timestamp": "2025-11-07T12:35:20"
+      },
+      {
+        "feature": "size",
+        "sentence": "프리사이즈인데도 핏이 완벽해요.",
+        "sentiment": "positive",
+        "score": 0.92,
+        "timestamp": "2025-11-06T16:45:55"
+      },
+      {
+        "feature": "material",
+        "sentence": "신축성이 좋아서 활동하기 편해요.",
+        "sentiment": "positive",
+        "score": 0.80,
+        "timestamp": "2025-11-05T10:20:30"
+      }
+    ]
+  }
+]

@@ -15,12 +15,15 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Expose port for Vite dev server
-EXPOSE 5173
+# Set default frontend port (can be overridden at runtime)
+ENV FRONTEND_PORT=8080
+
+# Expose port for Vite dev server (dynamically set via ENV)
+EXPOSE ${FRONTEND_PORT}
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost:5173/ || exit 1
+    CMD sh -c "wget --quiet --tries=1 --spider http://localhost:${FRONTEND_PORT}/ || exit 1"
 
 # Default command - can be overridden by compose
 CMD ["npm", "run", "dev"]

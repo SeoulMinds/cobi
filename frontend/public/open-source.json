@@ -1,24 +1,184 @@
 {
-  "generatedAt": "2025-11-08T14:26:46.318Z",
+  "generatedAt": "2025-11-08T17:00:30.789Z",
   "packages": [
     {
+      "name": "@eslint/js",
+      "version": "^9.32.0",
+      "dev": true
+    },
+    {
+      "name": "@hookform/resolvers",
+      "version": "^3.10.0",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-accordion",
+      "version": "^1.2.11",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-alert-dialog",
+      "version": "^1.1.14",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-aspect-ratio",
+      "version": "^1.1.7",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-avatar",
+      "version": "^1.1.10",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-checkbox",
+      "version": "^1.3.2",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-collapsible",
+      "version": "^1.1.11",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-context-menu",
+      "version": "^2.2.15",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-dialog",
+      "version": "^1.1.14",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-dropdown-menu",
+      "version": "^2.1.15",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-hover-card",
+      "version": "^1.1.14",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-label",
+      "version": "^2.1.7",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-menubar",
+      "version": "^1.1.15",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-navigation-menu",
+      "version": "^1.2.13",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-popover",
+      "version": "^1.1.14",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-progress",
+      "version": "^1.1.7",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-radio-group",
+      "version": "^1.3.7",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-scroll-area",
+      "version": "^1.2.9",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-select",
+      "version": "^2.2.5",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-separator",
+      "version": "^1.1.7",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-slider",
+      "version": "^1.3.5",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-slot",
+      "version": "^1.2.3",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-switch",
+      "version": "^1.2.5",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-tabs",
+      "version": "^1.1.12",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-toast",
+      "version": "^1.2.14",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-toggle",
+      "version": "^1.1.9",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-toggle-group",
+      "version": "^1.1.10",
+      "dev": false
+    },
+    {
+      "name": "@radix-ui/react-tooltip",
+      "version": "^1.2.7",
+      "dev": false
+    },
+    {
+      "name": "@tailwindcss/typography",
+      "version": "^0.5.16",
+      "dev": true
+    },
+    {
+      "name": "@tanstack/react-query",
+      "version": "^5.83.0",
+      "dev": false
+    },
+    {
+      "name": "@types/node",
+      "version": "^22.16.5",
+      "dev": true
+    },
+    {
       "name": "@types/react",
-      "version": "^18.2.37",
+      "version": "^18.3.23",
       "dev": true
     },
     {
       "name": "@types/react-dom",
-      "version": "^18.2.15",
+      "version": "^18.3.7",
       "dev": true
     },
     {
-      "name": "@vitejs/plugin-react",
-      "version": "^4.2.0",
+      "name": "@vitejs/plugin-react-swc",
+      "version": "^3.11.0",
       "dev": true
     },
     {
       "name": "autoprefixer",
-      "version": "^10.4.16",
+      "version": "^10.4.21",
       "dev": true
     },
     {
@@ -27,39 +187,154 @@
       "dev": false
     },
     {
+      "name": "class-variance-authority",
+      "version": "^0.7.1",
+      "dev": false
+    },
+    {
+      "name": "clsx",
+      "version": "^2.1.1",
+      "dev": false
+    },
+    {
+      "name": "cmdk",
+      "version": "^1.1.1",
+      "dev": false
+    },
+    {
+      "name": "date-fns",
+      "version": "^3.6.0",
+      "dev": false
+    },
+    {
+      "name": "embla-carousel-react",
+      "version": "^8.6.0",
+      "dev": false
+    },
+    {
+      "name": "eslint",
+      "version": "^9.32.0",
+      "dev": true
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "version": "^5.2.0",
+      "dev": true
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "version": "^0.4.20",
+      "dev": true
+    },
+    {
+      "name": "globals",
+      "version": "^15.15.0",
+      "dev": true
+    },
+    {
+      "name": "input-otp",
+      "version": "^1.4.2",
+      "dev": false
+    },
+    {
+      "name": "lovable-tagger",
+      "version": "^1.1.11",
+      "dev": true
+    },
+    {
+      "name": "lucide-react",
+      "version": "^0.462.0",
+      "dev": false
+    },
+    {
+      "name": "next-themes",
+      "version": "^0.3.0",
+      "dev": false
+    },
+    {
       "name": "postcss",
-      "version": "^8.4.32",
+      "version": "^8.5.6",
       "dev": true
     },
     {
       "name": "react",
-      "version": "^18.2.0",
+      "version": "^18.3.1",
+      "dev": false
+    },
+    {
+      "name": "react-day-picker",
+      "version": "^8.10.1",
       "dev": false
     },
     {
       "name": "react-dom",
-      "version": "^18.2.0",
+      "version": "^18.3.1",
+      "dev": false
+    },
+    {
+      "name": "react-hook-form",
+      "version": "^7.61.1",
+      "dev": false
+    },
+    {
+      "name": "react-resizable-panels",
+      "version": "^2.1.9",
       "dev": false
     },
     {
       "name": "react-router-dom",
-      "version": "^6.14.1",
+      "version": "^6.30.1",
+      "dev": false
+    },
+    {
+      "name": "recharts",
+      "version": "^2.15.4",
+      "dev": false
+    },
+    {
+      "name": "sonner",
+      "version": "^1.7.4",
+      "dev": false
+    },
+    {
+      "name": "tailwind-merge",
+      "version": "^2.6.0",
       "dev": false
     },
     {
       "name": "tailwindcss",
-      "version": "^3.3.6",
+      "version": "^3.4.17",
       "dev": true
+    },
+    {
+      "name": "tailwindcss-animate",
+      "version": "^1.0.7",
+      "dev": false
     },
     {
       "name": "typescript",
-      "version": "^5.2.2",
+      "version": "^5.8.3",
       "dev": true
     },
     {
-      "name": "vite",
-      "version": "^5.0.8",
+      "name": "typescript-eslint",
+      "version": "^8.38.0",
       "dev": true
+    },
+    {
+      "name": "vaul",
+      "version": "^0.9.9",
+      "dev": false
+    },
+    {
+      "name": "vite",
+      "version": "^5.4.19",
+      "dev": true
+    },
+    {
+      "name": "zod",
+      "version": "^3.25.76",
+      "dev": false
     }
   ]
 }
