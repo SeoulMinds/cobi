@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-// @ts-ignore - Vite env type
-let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001';
+let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 // If we're in the browser accessing from localhost:3000,
 // replace the Docker container name with localhost
 if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-  API_BASE_URL = 'http://localhost:8001';
+  API_BASE_URL = 'http://localhost:8000';
 }
 
 console.log('API_BASE_URL:', API_BASE_URL);
@@ -48,12 +47,43 @@ export const checkHealth = async () => {
   return response.data;
 };
 
-export const getProducts = async (page = 1, limit = 20, q?: string) => {
+export interface Product {
+  id?: string;
+  product_id?: string;
+  title?: string;
+  brand?: string;
+  category?: string[];
+  price?: number;
+  original_price?: number;
+  discount_rate?: number;
+  currency?: string;
+  stock?: number;
+  description?: string;
+  images?: string[];
+  attributes?: Record<string, unknown>;
+  tags?: string[];
+  ratings?: {
+    average?: number;
+    count?: number;
+  };
+  is_soldout?: boolean;
+  is_new?: boolean;
+  is_best?: boolean;
+}
+
+export interface ProductsResponse {
+  items: Product[];
+  count: number;
+  page: number;
+  limit: number;
+}
+
+export const getProducts = async (page: number = 1, limit: number = 20, query?: string): Promise<ProductsResponse> => {
   const response = await apiClient.get('/api/products/', {
     params: {
       page,
       limit,
-      q,
+      q: query,
     },
   });
   return response.data;

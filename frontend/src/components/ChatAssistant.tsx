@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle, X, Send } from "lucide-react";
-import { sendMessage, getMessages, MessageRequest } from "@/api";
+import { sendMessage, getMessages, getProducts, MessageRequest, Product } from "@/api";
 
 interface Message {
   id: string;
   user_message: string;
   ai_response: string;
   model?: string;
+  products?: Product[];
 }
 
 export const ChatAssistant = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -37,6 +40,40 @@ export const ChatAssistant = () => {
     loadMessages();
   }, []);
 
+  // Simulate LLM response with product recommendations
+  const simulateLLMResponse = async (userMessage: string): Promise<{ response: string; products: Product[] }> => {
+    try {
+      // Fetch random products from the API
+      const productsData = await getProducts(1, 20);
+
+      // Randomly select 2-3 products
+      const numProducts = Math.floor(Math.random() * 2) + 2; // 2 or 3 products
+      const shuffled = productsData.items.sort(() => 0.5 - Math.random());
+      const selectedProducts = shuffled.slice(0, numProducts);
+
+      // Generate a simulated response
+      const responses = [
+        "Great question! Based on what you're looking for, I found some perfect matches:",
+        "I'd be happy to help! Here are some products that might interest you:",
+        "Let me show you what we have that matches your needs:",
+        "Perfect! I found some excellent options for you:",
+      ];
+
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+      return {
+        response: randomResponse,
+        products: selectedProducts
+      };
+    } catch (err) {
+      console.error('Error fetching products:', err);
+      return {
+        response: "I'm here to help! Could you tell me more about what you're looking for?",
+        products: []
+      };
+    }
+  };
+
   const handleSend = async () => {
     if (!inputValue.trim() || isThinking) return;
 
@@ -46,14 +83,32 @@ export const ChatAssistant = () => {
     setError("");
 
     try {
-      const messageRequest: MessageRequest = { text: userMessageText };
-      const response = await sendMessage(messageRequest);
+      // Simulate LLM call with product recommendations
+      const { response: aiResponse, products } = await simulateLLMResponse(userMessageText);
 
-      // Add the new message to the messages list
-      setMessages((prev) => [...prev, response]);
+      // Create a simulated message
+      const simulatedMessage: Message = {
+        id: Date.now().toString(),
+        user_message: userMessageText,
+        ai_response: aiResponse,
+        model: "Simulated LLM (Demo)",
+        products: products
+      };
+
+      setMessages((prev) => [...prev, simulatedMessage]);
+
+      // Optionally, still send to backend for logging
+      // Uncomment below if you want to log to backend as well
+      // try {
+      //   const messageRequest: MessageRequest = { text: userMessageText };
+      //   await sendMessage(messageRequest);
+      // } catch (err) {
+      //   console.error('Failed to log message to backend:', err);
+      // }
+
     } catch (err) {
-      console.error('Failed to send message:', err);
-      setError('Failed to send message. Please try again.');
+      console.error('Failed to process message:', err);
+      setError('Failed to process message. Please try again.');
     } finally {
       setIsThinking(false);
     }
@@ -127,6 +182,57 @@ export const ChatAssistant = () => {
                       )}
                     </div>
                   </div>
+                  {/* Product Recommendations */}
+                  {message.products && message.products.length > 0 && (
+                    <div className="flex justify-start">
+                      <div className="max-w-[90%] space-y-2">
+                        {message.products.map((product) => (
+                          <Card
+                            key={product.id}
+                            className="cursor-pointer hover:shadow-lg transition-all duration-200 overflow-hidden"
+                            onClick={() => {
+                              navigate(`/product/${product.id}`);
+                              setIsOpen(false);
+                            }}
+                          >
+                            <div className="flex gap-3 p-3">
+                              <div className="w-20 h-20 flex-shrink-0 bg-muted rounded overflow-hidden">
+                                {product.images && product.images.length > 0 ? (
+                                  <img
+                                    src={product.images[0]}
+                                    alt={product.title || 'Product'}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5" />
+                                )}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-sm text-foreground truncate">
+                                  {product.title || 'Product'}
+                                </h4>
+                                <p className="text-xs text-muted-foreground truncate">
+                                  {Array.isArray(product.category)
+                                    ? product.category.join(', ')
+                                    : product.brand || 'Product'}
+                                </p>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <span className="text-lg font-bold text-foreground">
+                                    ${product.price || 0}
+                                  </span>
+                                  {product.original_price && product.original_price > (product.price || 0) && (
+                                    <span className="text-xs text-muted-foreground line-through">
+                                      ${product.original_price}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
               
