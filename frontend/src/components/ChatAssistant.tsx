@@ -121,7 +121,7 @@ export const ChatAssistant = () => {
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
-          className="fixed left-6 bottom-6 z-50 rounded-full w-14 h-14 shadow-lg bg-hero-gradient hover:opacity-90 transition-all"
+          className="fixed right-6 bottom-6 z-50 rounded-full w-14 h-14 shadow-lg bg-hero-gradient hover:opacity-90 transition-all"
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
@@ -129,8 +129,7 @@ export const ChatAssistant = () => {
 
       {/* Chat Panel */}
       <div
-        className={`fixed left-0 top-16 h-[calc(100vh-4rem)] w-full md:w-96 bg-background border-r border-border shadow-xl z-40 transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed right-0 top-16 h-[calc(100vh-4rem)] w-full md:w-96 bg-background border-l border-border shadow-xl z-40 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <Card className="h-full rounded-none border-0 flex flex-col">

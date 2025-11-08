@@ -1,7 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProductCard } from "@/components/ProductCard";
-import { ChatAssistant } from "@/components/ChatAssistant";
 
 const products = [
   { id: "1", name: "Premium Sneakers", price: 129, category: "Footwear", image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1738680947-pegasus-premium-1000px-67a229b4b7eae.jpg?crop=1xw:1xh;center,top&resize=980:*" },
@@ -45,8 +44,6 @@ const Index = () => {
           </p>
         </div>
       </section>
-
-      <ChatAssistant />
     </div>
   );
 };
