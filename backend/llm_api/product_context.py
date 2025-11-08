@@ -1,7 +1,8 @@
 """Product context building and search for LLM integration."""
 
 import re
-from typing import List, Dict, Optional, Any
+from typing import Any, Dict, List
+
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
 
@@ -74,8 +75,29 @@ async def extract_search_criteria(user_query: str) -> Dict[str, Any]:
     # General keywords (if no specific category found)
     if not criteria["keywords"]:
         # Extract meaningful words (exclude common words)
-        stop_words = {"i", "need", "want", "looking", "for", "show", "me", "find",
-                     "get", "buy", "purchase", "a", "an", "the", "some", "any"}
+        stop_words = {
+            "i",
+            "need",
+            "want",
+            "looking",
+            "for",
+            "show",
+            "me",
+            "find",
+            "get",
+            "buy",
+            "purchase",
+            "a",
+            "an",
+            "the",
+            "some",
+            "any",
+            "products",
+            "product",
+            "suggest",
+            "recommendation",
+            "help",
+        }
         words = re.findall(r'\b\w+\b', query_lower)
         criteria["keywords"] = [w for w in words if w not in stop_words and len(w) > 2]
 
@@ -137,8 +159,16 @@ async def search_products_by_query(
     if criteria["brand"]:
         mongo_query["brand"] = {"$regex": criteria["brand"], "$options": "i"}
 
-    # If no specific criteria, return random products
-    if not mongo_query:
+    # If no specific criteria OR only generic keywords, return random products
+    has_specific_criteria = bool(
+        criteria["category"]
+        or criteria["brand"]
+        or criteria["max_price"]
+        or criteria["min_price"]
+        or (criteria["keywords"] and len(criteria["keywords"]) > 0)
+    )
+
+    if not mongo_query or not has_specific_criteria:
         # Use aggregation to get random products
         pipeline = [
             {"$sample": {"size": limit}},
@@ -173,7 +203,7 @@ async def build_product_context_for_llm(products: List[Dict[str, Any]]) -> str:
         Formatted string with product information
     """
     if not products:
-        return "No products available in our catalog right now."
+        return "Note: No specific products match the criteria, but our catalog has many items available. Suggest the user browse our catalog or refine their search."
 
     context_lines = ["Here are the available products:\n"]
 
