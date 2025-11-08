@@ -39,7 +39,44 @@ cp frontend/.env.example frontend/.env.local
 
 **Note:** Update the generated `.env` and `frontend/.env.local` files with your actual configuration values (API keys, database credentials, etc.)
 
-### Open in VS Code Dev Container
+###  Running with raw Docker Compose
+
+### Start All Services
+
+```bash
+./compose_up.sh
+```
+
+This script will:
+1. **Initialize**: Run `setup_node_packaging.sh` to generate package-lock.json files
+2. **Start Services**: Launch all Docker containers (frontend, backend, MongoDB, Mongo Express, Qdrant)
+3. **Install Dependencies**: 
+   - Install frontend npm packages
+   - Install backend Python packages
+4. **Generate Assets**: Create open-source.json for legal compliance
+
+### Stop All Services
+
+```bash
+./compose_down.sh
+```
+
+To also remove volumes:
+```bash
+docker compose -f compose.yaml -f compose.override.yaml down -v
+```
+
+## Service URLs
+
+After running `./compose_up.sh`, access services at:
+
+- **Frontend**: http://localhost:3000
+- **Backend API Docs:** http://localhost:8001/docs (Swagger UI)
+- **Mongo Express**: http://localhost:8081
+- **Qdrant Dashboard**: http://localhost:6333/dashboard
+
+
+### Running with Dev Containers in VS Code
 
 **Prerequisite:** Ensure the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) is installed in VS Code.
 
@@ -49,22 +86,12 @@ cp frontend/.env.example frontend/.env.local
 
 **Note:** This may take several minutes on the first run depending on your machine specs & internet speed.
 
-After the build completes, all services will start automatically.
+After the build completes, all services will start automatically. To access the services, use the URLs mentioned above.
 
-### Access the Application
-
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:8001
-- **API Docs:** http://localhost:8001/docs (Swagger UI)
-- **Database (Mongo Express):** http://localhost:8081
 
 ### Stop Services
 
-To stop all running services:
-
-```bash
-docker compose down
-```
+To stop all running services using VScode UI, click on the Dev Containers icon in the bottom-left corner and select **"Close Remote Connection"**.
 
 ---
 
