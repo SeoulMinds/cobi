@@ -7,7 +7,7 @@ React frontend is now on **port 3000** (React development standard).
 | Service | Port | URL |
 |---------|------|-----|
 | Frontend (React) | 3000 | `http://localhost:3000` |
-| Backend (FastAPI) | 8000 | `http://localhost:8000` |
+| Backend (FastAPI) | 8001 | `http://localhost:8001` |
 | Mongo Express | 8081 | `http://localhost:8081` |
 | MongoDB | 27017 | `localhost:27017` (internal) |
 
@@ -16,7 +16,7 @@ React frontend is now on **port 3000** (React development standard).
 ### `.env`
 ```properties
 FRONTEND_PORT=3000    # React standard port
-BACKEND_PORT=8000
+BACKEND_PORT=8001
 MONGO_EXPRESS_PORT=8081
 ```
 
@@ -41,7 +41,7 @@ docker compose up --build
 
 Once running:
 - **Frontend**: Open your browser to `http://localhost:3000`
-- **Backend API**: `http://localhost:8000`
+- **Backend API**: `http://localhost:8001`
 - **Mongo Express**: `http://localhost:8081`
 
 ## Custom Port

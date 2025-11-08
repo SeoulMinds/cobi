@@ -54,8 +54,8 @@ After the build completes, all services will start automatically.
 ### Access the Application
 
 - **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:8000
-- **API Docs:** http://localhost:8000/docs (Swagger UI)
+- **Backend API:** http://localhost:8001
+- **API Docs:** http://localhost:8001/docs (Swagger UI)
 - **Database (Mongo Express):** http://localhost:8081
 
 ### Stop Services
@@ -101,8 +101,8 @@ docker compose down
 
 ### Architecture
 
-- **Port:** `8000`
-- **API Docs:** `http://localhost:8000/docs` (Swagger UI)
+- **Port:** `8001`
+- **API Docs:** `http://localhost:8001/docs` (Swagger UI)
 - **Health Check:** `GET /health`
 
 ### Key Endpoints
@@ -117,7 +117,7 @@ docker compose down
 ### Example: Send Message
 
 ```bash
-curl -X POST http://localhost:8000/api/chat \
+curl -X POST http://localhost:8001/api/chat \
   -H "Content-Type: application/json" \
   -d '{"text": "Hello AI!", "user_id": "user123"}'
 ```
@@ -192,7 +192,7 @@ cp frontend/.env.example frontend/.env.local
 
 **Frontend `.env.local`** (from `frontend/.env.example`):
 ```
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=http://localhost:8001
 VITE_APP_TITLE=seoulminds
 VITE_APP_DESCRIPTION=hackseoulminds website
 VITE_API_TIMEOUT=10000
@@ -235,8 +235,8 @@ if OPENAI_API_KEY:
 - **Fix:** `docker compose down && docker compose up --build`
 
 ### Issue: Frontend can't reach Backend
-- **Check:** Backend is accessible: `curl http://localhost:8000/health`
-- **Check:** Frontend `.env.local` has `VITE_API_BASE_URL=http://localhost:8000`
+- **Check:** Backend is accessible: `curl http://localhost:8001/health`
+- **Check:** Frontend `.env.local` has `VITE_API_BASE_URL=http://localhost:8001`
 - **Fix:** Clear browser cache & restart frontend
 
 ### Issue: Ports already in use

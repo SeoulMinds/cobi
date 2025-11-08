@@ -42,12 +42,12 @@ Set the backend API URL via environment variables:
 
 **Development (.env.local):**
 ```
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=http://localhost:8001
 ```
 
 **Production (.env.production):**
 ```
-VITE_API_BASE_URL=http://backend:8000
+VITE_API_BASE_URL=http://backend:8001
 ```
 
 ## Features
@@ -97,7 +97,7 @@ The `dist/` folder can be deployed to any static host:
 
 **Frontend can't reach backend:**
 - Check `VITE_API_BASE_URL` in `.env.local`
-- Verify backend is running: `curl http://localhost:8000/health`
+- Verify backend is running: `curl http://localhost:8001/health`
 - Clear browser cache
 
 **Tailwind styles not loading:**

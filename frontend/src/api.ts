@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 // @ts-ignore - Vite env type
-let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001';
 
-// If we're in the browser accessing from localhost:3000, 
+// If we're in the browser accessing from localhost:3000,
 // replace the Docker container name with localhost
 if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-  API_BASE_URL = 'http://localhost:8000';
+  API_BASE_URL = 'http://localhost:8001';
 }
 
 console.log('API_BASE_URL:', API_BASE_URL);
