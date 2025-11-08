@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { sendMessage, getMessages, checkHealth, MessageResponse } from './api';
+import { sendMessage, getMessages, checkHealth, MessageResponse, MessageRequest } from './api';
 import ChatPanel from './components/chat/ChatPanel';
 
 interface HealthResponse {
@@ -8,6 +8,55 @@ interface HealthResponse {
 }
 
 export default function App() {
+  const [backendHealth, setBackendHealth] = useState<string>('Checking...');
+  const [messages, setMessages] = useState<MessageResponse[]>([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const checkBackendHealth = async () => {
+      try {
+        const health = await checkHealth();
+        setBackendHealth(health.status);
+      } catch (err) {
+        setBackendHealth('Offline');
+      }
+    };
+
+    const loadMessages = async () => {
+      try {
+        const response = await getMessages();
+        setMessages(response.messages || []);
+      } catch (err) {
+        setError('Failed to load messages');
+      }
+    };
+
+    checkBackendHealth();
+    loadMessages();
+  }, []);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const messageRequest: MessageRequest = { text: input };
+      await sendMessage(messageRequest);
+      setInput('');
+      const response = await getMessages();
+      setMessages(response.messages || []);
+    } catch (err) {
+      setError('Failed to send message');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600 flex flex-col">
       {/* Header */}
