@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, X, Send } from "lucide-react";
-import { sendMessage, getMessages, MessageRequest, Product } from "@/api";
+import { MessageCircle, X, Send, Trash2 } from "lucide-react";
+import { sendMessage, MessageRequest, Product } from "@/api";
 
 interface Message {
   id: string;
@@ -20,12 +20,23 @@ interface ChatAssistantProps {
   onChatOpen?: () => void;
 }
 
+const CHAT_STORAGE_KEY = 'cobi_chat_messages';
+
 export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(splitView); // Auto-open in split view
   const [isThinking, setIsThinking] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    // Load messages from localStorage on initial mount
+    try {
+      const saved = localStorage.getItem(CHAT_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch (err) {
+      console.error('Failed to load chat messages:', err);
+      return [];
+    }
+  });
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState<string>("");
 
@@ -36,6 +47,15 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
     }
   }, [splitView]);
 
+  // Persist messages to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
+    } catch (err) {
+      console.error('Failed to save chat messages:', err);
+    }
+  }, [messages]);
+
   // Notify parent when chat is opened (for switching to split view)
   const handleOpen = () => {
     setIsOpen(true);
@@ -44,22 +64,11 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
     }
   };
 
-  // Load existing messages when component mounts
-  useEffect(() => {
-    const loadMessages = async () => {
-      try {
-        const response = await getMessages();
-        if (response.messages && response.messages.length > 0) {
-          setMessages(response.messages);
-        }
-      } catch (err) {
-        console.error('Failed to load messages:', err);
-        // Don't show error to user, just start with empty chat
-      }
-    };
-
-    loadMessages();
-  }, []);
+  // Clear chat history
+  const handleClearChat = () => {
+    setMessages([]);
+    localStorage.removeItem(CHAT_STORAGE_KEY);
+  };
 
   const handleSend = async () => {
     if (!inputValue.trim() || isThinking) return;
@@ -130,18 +139,33 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
                 <p className="text-xs text-muted-foreground">Always here to help</p>
               </div>
             </div>
-            {/* Close button - only in floating mode */}
-            {!splitView && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(false)}
-                className="hover:bg-destructive/10 hover:text-destructive shrink-0 rounded-full bg-background/80 border border-border z-10"
-                aria-label="Close chat"
-              >
-                <X className="h-7 w-7 text-foreground stroke-[3]" />
-              </Button>
-            )}
+            <div className="flex items-center gap-2">
+              {/* Clear chat button */}
+              {messages.length > 0 && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleClearChat}
+                  className="hover:bg-muted shrink-0 rounded-full"
+                  aria-label="Clear chat"
+                  title="Clear chat history"
+                >
+                  <Trash2 className="h-4 w-4 text-muted-foreground" />
+                </Button>
+              )}
+              {/* Close button - only in floating mode */}
+              {!splitView && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                  className="hover:bg-destructive/10 hover:text-destructive shrink-0 rounded-full bg-background/80 border border-border z-10"
+                  aria-label="Close chat"
+                >
+                  <X className="h-7 w-7 text-foreground stroke-[3]" />
+                </Button>
+              )}
+            </div>
           </div>
 
           {/* Messages */}
@@ -165,9 +189,6 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
                   <div className="flex justify-start">
                     <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-muted text-foreground">
                       <p className="text-sm">{message.ai_response}</p>
-                      {message.model && (
-                        <p className="text-xs text-muted-foreground mt-1">{message.model}</p>
-                      )}
                     </div>
                   </div>
                   {/* Product Recommendations */}
