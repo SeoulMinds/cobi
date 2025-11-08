@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle, X, Send } from "lucide-react";
-import { sendMessage, getMessages, getProducts, MessageRequest, Product } from "@/api";
+import { sendMessage, getMessages, MessageRequest, Product } from "@/api";
 
 interface Message {
   id: string;
@@ -61,40 +61,6 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
     loadMessages();
   }, []);
 
-  // Simulate LLM response with product recommendations
-  const simulateLLMResponse = async (userMessage: string): Promise<{ response: string; products: Product[] }> => {
-    try {
-      // Fetch random products from the API
-      const productsData = await getProducts(1, 20);
-
-      // Randomly select 2-3 products
-      const numProducts = Math.floor(Math.random() * 2) + 2; // 2 or 3 products
-      const shuffled = productsData.items.sort(() => 0.5 - Math.random());
-      const selectedProducts = shuffled.slice(0, numProducts);
-
-      // Generate a simulated response
-      const responses = [
-        "Great question! Based on what you're looking for, I found some perfect matches:",
-        "I'd be happy to help! Here are some products that might interest you:",
-        "Let me show you what we have that matches your needs:",
-        "Perfect! I found some excellent options for you:",
-      ];
-
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-
-      return {
-        response: randomResponse,
-        products: selectedProducts
-      };
-    } catch (err) {
-      console.error('Error fetching products:', err);
-      return {
-        response: "I'm here to help! Could you tell me more about what you're looking for?",
-        products: []
-      };
-    }
-  };
-
   const handleSend = async () => {
     if (!inputValue.trim() || isThinking) return;
 
@@ -104,32 +70,28 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
     setError("");
 
     try {
-      // Simulate LLM call with product recommendations
-      const { response: aiResponse, products } = await simulateLLMResponse(userMessageText);
-
-      // Create a simulated message
-      const simulatedMessage: Message = {
-        id: Date.now().toString(),
-        user_message: userMessageText,
-        ai_response: aiResponse,
-        model: "Simulated LLM (Demo)",
-        products: products
+      // Send message to backend API with Gemini + product search
+      const messageRequest: MessageRequest = {
+        text: userMessageText,
+        user_id: "demo-user" // You can make this dynamic if you have user auth
       };
 
-      setMessages((prev) => [...prev, simulatedMessage]);
+      const response = await sendMessage(messageRequest);
 
-      // Optionally, still send to backend for logging
-      // Uncomment below if you want to log to backend as well
-      // try {
-      //   const messageRequest: MessageRequest = { text: userMessageText };
-      //   await sendMessage(messageRequest);
-      // } catch (err) {
-      //   console.error('Failed to log message to backend:', err);
-      // }
+      // Add the message to the UI
+      const newMessage: Message = {
+        id: response.id,
+        user_message: response.user_message,
+        ai_response: response.ai_response,
+        model: response.model,
+        products: response.products || []
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
 
     } catch (err) {
-      console.error('Failed to process message:', err);
-      setError('Failed to process message. Please try again.');
+      console.error('Failed to send message:', err);
+      setError('Failed to send message. Please try again.');
     } finally {
       setIsThinking(false);
     }

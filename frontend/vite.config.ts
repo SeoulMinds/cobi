@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "0.0.0.0",
-    port: 8080,
+    port: parseInt(process.env.FRONTEND_PORT || '8080'),
     hmr: true,
     watch: {
       usePolling: false

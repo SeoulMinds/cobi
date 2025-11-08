@@ -1,7 +1,7 @@
 services:
   backend:
     restart: "no"
-    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
+    command: sh -c "uvicorn main:app --host 0.0.0.0 --port $$BACKEND_PORT --reload"
     environment:
       - PYTHONUNBUFFERED=1
     volumes:

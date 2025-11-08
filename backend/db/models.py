@@ -125,6 +125,8 @@ class MessageResponse(BaseModel):
     ai_response: str
     model: str
     timestamp: str
+    products: Optional[List[Product]] = []  # Product recommendations
+    search_query: Optional[str] = None  # What was searched
 
     class Config:
         populate_by_name = True

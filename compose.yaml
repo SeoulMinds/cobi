@@ -9,12 +9,13 @@ services:
     build:
       context: ./backend
     ports:
-      - "${BACKEND_PORT}:8001"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
       MONGODB_URI: ${MONGODB_URI}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       FRONTEND_URL: ${FRONTEND_URL:-}
+      BACKEND_PORT: ${BACKEND_PORT}
     env_file: *common-env-file
     depends_on:
       mongodb:
@@ -22,7 +23,7 @@ services:
     networks:
       - cobi-network
     healthcheck:
-      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8001/health')"]
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:${BACKEND_PORT}/health')"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -32,9 +33,11 @@ services:
     build:
       context: ./frontend
     ports:
-      - "${FRONTEND_PORT}:8080"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
       VITE_API_BASE_URL: http://localhost:${BACKEND_PORT}
+      VITE_BACKEND_PORT: ${BACKEND_PORT}
+      FRONTEND_PORT: ${FRONTEND_PORT}
     env_file: *common-env-file
     depends_on:
       - backend

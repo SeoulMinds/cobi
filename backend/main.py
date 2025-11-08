@@ -13,14 +13,29 @@ from db import seeder
 from db.connection import attach_db_to_app
 from routers import products as products_router
 
+# Import Gemini service
+try:
+    from llm_api.gemini_service import get_gemini_service
+    from llm_api.product_context import (
+        search_products_by_query,
+        build_product_context_for_llm,
+        format_products_for_response
+    )
+    GEMINI_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Could not import Gemini service: {e}")
+    GEMINI_AVAILABLE = False
+
 # ============================================================================
 # Configuration
 # ============================================================================
 
 MONGODB_URL = os.getenv("MONGODB_URI", "mongodb://seoulminds:password@mongodb:27017/seoulminds_db?authSource=admin")
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+FRONTEND_PORT = os.getenv("FRONTEND_PORT", "8080")
+FRONTEND_URL = os.getenv("FRONTEND_URL", f"http://localhost:{FRONTEND_PORT}")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+BACKEND_PORT = int(os.getenv("BACKEND_PORT", "8000"))
 
 # Global database connection
 db_client: AsyncIOMotorClient | None = None
@@ -116,8 +131,8 @@ async def health_check():
 @app.post("/api/chat")
 async def send_message(request: MessageRequest):
     """
-    Send a message and get AI response.
-    Uses OpenAI or Gemini based on API availability.
+    Send a message and get AI response with product recommendations.
+    Uses Gemini AI for intelligent shopping assistance.
     """
     if db is None:
         raise HTTPException(
@@ -126,17 +141,44 @@ async def send_message(request: MessageRequest):
         )
 
     try:
-        # For MVP: return mock AI response
-        ai_response = f"Echo: {request.text}"
+        ai_response = None
         model_used = "mock"
+        products = []
+        search_query = request.text
 
-        # TODO: Replace with actual OpenAI/Gemini integration
-        # if OPENAI_API_KEY:
-        #     ai_response = await call_openai(request.text)
-        #     model_used = "openai"
-        # elif GEMINI_API_KEY:
-        #     ai_response = await call_gemini(request.text)
-        #     model_used = "gemini"
+        # Try to use Gemini with product search if available
+        if GEMINI_AVAILABLE and GEMINI_API_KEY:
+            try:
+                # Step 1: Search for relevant products based on user query
+                products_raw = await search_products_by_query(
+                    user_query=request.text,
+                    db=db,
+                    limit=5
+                )
+
+                # Step 2: Build product context for Gemini
+                product_context = await build_product_context_for_llm(products_raw)
+
+                # Step 3: Get AI response with product context
+                gemini_service = get_gemini_service(api_key=GEMINI_API_KEY)
+                if gemini_service:
+                    ai_response = await gemini_service.generate_response(
+                        user_query=request.text,
+                        product_context=product_context
+                    )
+                    model_used = "gemini-1.5-flash"
+
+                # Step 4: Format products for response
+                products = format_products_for_response(products_raw)
+
+            except Exception as gemini_error:
+                print(f"Gemini/Product search error: {gemini_error}")
+                # Fall back to mock response
+
+        # Fallback to mock if Gemini not available or failed
+        if ai_response is None:
+            ai_response = f"Echo: {request.text}"
+            model_used = "mock"
 
         # Store message in MongoDB
         message_doc = {
@@ -144,6 +186,8 @@ async def send_message(request: MessageRequest):
             "ai_response": ai_response,
             "model": model_used,
             "user_id": request.user_id or "anonymous",
+            "products": products,
+            "search_query": search_query,
         }
         result = await db.messages.insert_one(message_doc)
 
@@ -152,6 +196,8 @@ async def send_message(request: MessageRequest):
             "user_message": request.text,
             "ai_response": ai_response,
             "model": model_used,
+            "products": products,
+            "search_query": search_query,
         }
 
     except Exception as e:
@@ -255,6 +301,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8001,
+        port=BACKEND_PORT,
         reload=True,
     )

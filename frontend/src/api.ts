@@ -1,12 +1,7 @@
 import axios from 'axios';
 
-let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
-
-// If we're in the browser accessing from localhost:3000,
-// replace the Docker container name with localhost
-if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-  API_BASE_URL = 'http://localhost:8000';
-}
+// @ts-ignore - Vite env type
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || `http://localhost:${import.meta.env.VITE_BACKEND_PORT || '8000'}`;
 
 console.log('API_BASE_URL:', API_BASE_URL);
 
@@ -25,6 +20,8 @@ export interface MessageResponse {
   user_message: string;
   ai_response: string;
   model: string;
+  products?: Product[];
+  search_query?: string;
 }
 
 export const sendMessage = async (message: MessageRequest): Promise<MessageResponse> => {
