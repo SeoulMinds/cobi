@@ -17,9 +17,10 @@ interface Message {
 
 interface ChatAssistantProps {
   splitView?: boolean;
+  onChatOpen?: () => void;
 }
 
-export const ChatAssistant = ({ splitView = false }: ChatAssistantProps) => {
+export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(splitView); // Auto-open in split view
@@ -34,6 +35,14 @@ export const ChatAssistant = ({ splitView = false }: ChatAssistantProps) => {
       setIsOpen(true);
     }
   }, [splitView]);
+
+  // Notify parent when chat is opened (for switching to split view)
+  const handleOpen = () => {
+    setIsOpen(true);
+    if (onChatOpen) {
+      onChatOpen();
+    }
+  };
 
   // Load existing messages when component mounts
   useEffect(() => {
@@ -131,7 +140,7 @@ export const ChatAssistant = ({ splitView = false }: ChatAssistantProps) => {
       {/* Chat Toggle Button - Hidden when chat is open or in split view */}
       {!isOpen && !splitView && (
         <Button
-          onClick={() => setIsOpen(true)}
+          onClick={handleOpen}
           size="lg"
           className="fixed right-6 bottom-6 z-50 rounded-full w-14 h-14 shadow-lg bg-hero-gradient hover:opacity-90 transition-all"
         >
@@ -208,7 +217,8 @@ export const ChatAssistant = ({ splitView = false }: ChatAssistantProps) => {
                             key={product.id}
                             className="cursor-pointer hover:shadow-lg transition-all duration-200 overflow-hidden"
                             onClick={() => {
-                              navigate(`/product/${product.id}`);
+                              // Navigate with state indicating this came from chat
+                              navigate(`/product/${product.id}`, { state: { fromChat: true } });
                               setIsOpen(false);
                             }}
                           >

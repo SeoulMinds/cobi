@@ -46,7 +46,8 @@ export const ProductCard = ({
 
   const handleCardClick = () => {
     if (id) {
-      navigate(`/product/${id}`);
+      // Navigate with state indicating this came from main page (not from chat)
+      navigate(`/product/${id}`, { state: { fromChat: false } });
     }
   };
 
