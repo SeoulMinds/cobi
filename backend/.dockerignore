@@ -1,0 +1,196 @@
+# Include any files or directories that you don't want to be copied to your
+# container here (e.g., local build artifacts, temporary files, etc.).
+#
+# For more help, visit the .dockerignore file reference guide at
+# https://docs.docker.com/go/build-context-dockerignore/
+
+# Docker build context ignore for a full-stack web project (Vue.js frontend)
+# Remove files that should not be copied into the container or build context.
+
+# OS / editor
+**/.DS_Store
+**/.vscode
+**/.idea
+**/.vagrant
+**/.cache
+
+# Git
+**/.git
+**/.gitignore
+
+# Environment & secrets
+**/.env
+**/.env.*
+**/secrets*.yaml
+**/secrets*.yml
+
+# Node / frontend (Vue.js, Nuxt, Vite, etc.)
+**/node_modules
+**/npm-debug.log
+**/yarn-error.log
+**/pnpm-debug.log
+**/.parcel-cache
+**/.turbo
+**/dist
+**/build
+**/.next
+**/.nuxt
+**/.vite
+**/.vercel
+**/public/build
+**/coverage
+**/public/static
+
+# Vue CLI / project files
+**/yarn.lock
+**/package-lock.json
+**/pnpm-lock.yaml
+
+# Static assets and generated files
+**/generated
+**/tmp
+**/out
+**/public/cache
+
+# Docker / compose local files
+**/docker-compose*.yml
+**/docker-compose*.yaml
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv
+.env
+.env.local
+.git
+.gitignore
+.dockerignore
+.vscode
+.idea
+*.egg-info
+dist
+build
+.pytest_cache
+.coverage
+htmlcov
+
+# Logs / test artifacts
+**/logs
+**/npm-debug.log
+**/.nyc_output
+**/.coverage
+htmlcov/
+
+# IDE / OS project files
+**/.classpath
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/*.*proj.user
+**/*.iml
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Common binary and packing artifacts
+*.tgz
+*.zip
+*.tar.gz
+
+# Keep repository metadata and docs out of images
+README.md
+LICENSE
+
+# --- Backend-specific optional ignores ---
+# Node.js / Express
+# (Useful if you have server code in the repo)
+# node_modules already covered above
+**/npm-debug.log
+**/yarn-error.log
+**/pnpm-debug.log
+build/
+coverage/
+.env.local
+.env.development
+.env.test
+
+# Python (Flask, Django, FastAPI)
+# Only add if you use a Python backend
+**/__pycache__
+**/*.py[cod]
+**/*.pyo
+**/.venv
+**/venv
+**/.pytest_cache/
+.coverage*
+htmlcov/
+.tox/
+.nox/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+
+# Go (Golang)
+# Typical Go build artifacts and vendor folder
+**/bin/
+**/pkg/
+**/vendor/
+**/*.exe
+**/*.test
+**/*.out
+**/go.sum
+
+# Java (Spring, etc.)
+**/target/
+**/build/
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+**/*.iml
+
+# Rust
+**/target/
+**/*.rlib
+**/*.rmeta
+**/*.d
+
+# PHP / Composer
+**/vendor/
+**/composer.lock
+
+# Ruby / Rails
+**/log/
+**/tmp/
+**/vendor/bundle
+**/.bundle/
+**/Gemfile.lock
+
+# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+
+# Elixir / Phoenix
+**/_build/
+**/deps/
+**/erl_crash.dump
+
+# Database files (local dev)
+**/*.sqlite3
+**/*.db
+
+# Optional: CI artifacts
+**/.circleci
+**/.github/workflows
+
+# Add any framework-specific or service-specific files you know are local-only.
+# End of .dockerignore

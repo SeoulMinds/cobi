@@ -1,0 +1,19 @@
+# Production-specific overrides for seoulminds-night-action
+# Usage: docker compose -f compose.yaml -f compose.prod.yaml up -d
+
+services:
+  frontend:
+    restart: always
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  mongodb:
+    restart: always
+
+  mongo-express:
+    restart: always

@@ -1,0 +1,27 @@
+  # Dev container service - runs all services for development
+services:
+  full-stack-devcontainer:
+    container_name: seoulminds-night-action-devcontainer-${TAG}
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile.devcontainer
+    env_file:
+      - ./.env
+    restart: no
+    depends_on:
+      - frontend
+      - backend
+      - mongodb
+      - mongo-express
+    command: tail -f /dev/null
+    user: app
+    volumes:
+      - .:/seoulminds-night-action:cached
+      - seoulminds-night-action-commandhistory:/var/seoulminds-night-action/commandhistory
+      - seoulminds-night-action-vscode-extensions:/home/app/.vscode-server/extensions
+      - seoulminds-night-action-vscode-data:/home/app/.vscode-server/data
+
+volumes:
+  seoulminds-night-action-commandhistory:
+  seoulminds-night-action-vscode-extensions:
+  seoulminds-night-action-vscode-data:

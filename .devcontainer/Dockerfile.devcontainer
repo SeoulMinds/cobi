@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1.17
+
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+WORKDIR /seoulminds-night-action
+
+# Copy initialization scripts
+COPY .devcontainer/initializeCommand.sh .devcontainer/onCreateCommand.sh \
+     .devcontainer/postCreateCommand.sh .devcontainer/postStartCommand.sh .devcontainer/
+
+# Install system packages + Node.js 22.x
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    sudo \
+    curl \
+    git \
+    build-essential \
+    ca-certificates \
+    zsh \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app user
+RUN groupadd -r app && useradd -r -g app -d /home/app -m -s /bin/zsh app \
+    && echo "app ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/app \
+    && chmod 0440 /etc/sudoers.d/app
+
+# Setup app user directories with proper permissions
+RUN mkdir -p /var/seoulminds-night-action/commandhistory && \
+    touch /var/seoulminds-night-action/commandhistory/.zsh_history && \
+    mkdir -p /home/app/.vscode-server/bin && \
+    mkdir -p /home/app/.vscode-server/extensions && \
+    mkdir -p /home/app/.vscode-server/data && \
+    mkdir -p /home/app/.vscode-server/data/Machine && \
+    chown -R app:app /var/seoulminds-night-action /seoulminds-night-action /home/app && \
+    chmod -R 755 /home/app
+
+# Setup zsh configuration files to prevent zsh-newuser-install prompt
+RUN mkdir -p /home/app && \
+    touch /home/app/.zshrc /home/app/.zshenv /home/app/.zprofile /home/app/.zlogin && \
+    chown -R app:app /home/app/.zsh* && \
+    chmod 644 /home/app/.zsh*
+
+# Switch to app user
+USER app
+WORKDIR /seoulminds-night-action
