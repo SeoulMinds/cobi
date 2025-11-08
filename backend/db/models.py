@@ -102,3 +102,29 @@ class Product(BaseModel):
 
 def get_products_collection(db) -> Any:
     return db.get_collection("products")
+
+
+# ---------------------------------------------------------------------------
+# Shared API models (moved from backend/models.py)
+# ---------------------------------------------------------------------------
+
+
+class HealthResponse(BaseModel):
+    status: str
+    mongodb: str
+
+
+class MessageRequest(BaseModel):
+    text: str = Field(..., min_length=1, max_length=1000)
+    user_id: str | None = None
+
+
+class MessageResponse(BaseModel):
+    id: str = Field(alias="_id")
+    user_message: str
+    ai_response: str
+    model: str
+    timestamp: str
+
+    class Config:
+        populate_by_name = True

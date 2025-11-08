@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from pydantic import BaseModel, Field
+from db.models import HealthResponse, MessageRequest, MessageResponse
 from db import seeder
 from db.connection import attach_db_to_app
 from routers import products as products_router
@@ -95,29 +96,7 @@ app.add_middleware(
 app.include_router(products_router.router)
 
 
-# ============================================================================
-# Models
-# ============================================================================
-
-class HealthResponse(BaseModel):
-    status: str
-    mongodb: str
-
-
-class MessageRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=1000)
-    user_id: str | None = None
-
-
-class MessageResponse(BaseModel):
-    id: str = Field(alias="_id")
-    user_message: str
-    ai_response: str
-    model: str
-    timestamp: str
-
-    class Config:
-        populate_by_name = True
+# Models moved to `backend/models.py`
 
 
 # ============================================================================
