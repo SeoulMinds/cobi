@@ -21,6 +21,7 @@ try:
         format_products_for_response,
         search_products_by_query,
     )
+    from llm_api.sentiment_analyzer import get_sentiment_analyzer
     GEMINI_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Could not import Gemini service: {e}")
@@ -72,6 +73,30 @@ async def lifespan(app: FastAPI):
                 print("🌱 Running DB auto-seed check...")
                 seed_summary = await seeder.seed_if_empty(db, force=force)
                 print(f"✅ DB seeding result: {seed_summary}")
+                
+                # Sync user profiles from MongoDB to Qdrant
+                print("🔄 Syncing user profiles to Qdrant...")
+                try:
+                    from vector_db.qdrant_service import get_qdrant_service
+                    qdrant = get_qdrant_service()
+                    
+                    # Get all user profiles from MongoDB
+                    profiles_coll = db.get_collection("user_profiles")
+                    profiles = await profiles_coll.find({}).to_list(None)
+                    
+                    synced_count = 0
+                    for profile in profiles:
+                        user_id = profile.get("user_id")
+                        if user_id:
+                            profile_copy = dict(profile)
+                            profile_copy.pop("_id", None)
+                            success = qdrant.sync_from_mongodb_data(user_id, profile_copy)
+                            if success:
+                                synced_count += 1
+                    
+                    print(f"✅ Synced {synced_count}/{len(profiles)} user profiles to Qdrant")
+                except Exception as sync_error:
+                    print(f"⚠️ Failed to sync user profiles to Qdrant: {sync_error}")
             else:
                 print("⚠️ Skipping DB auto-seed in production")
         except Exception as e:
@@ -136,6 +161,7 @@ async def send_message(request: MessageRequest):
     """
     Send a message and get AI response with product recommendations.
     Uses Gemini AI for intelligent shopping assistance.
+    Also analyzes user sentiment and updates their preference profile.
     """
     if db is None:
         raise HTTPException(
@@ -148,6 +174,7 @@ async def send_message(request: MessageRequest):
         model_used = "mock"
         products = []
         search_query = request.text
+        sentiment_features = []
 
         # Try to use Gemini with product search if available
         if GEMINI_AVAILABLE and GEMINI_API_KEY:
@@ -169,10 +196,47 @@ async def send_message(request: MessageRequest):
                         user_query=request.text,
                         product_context=product_context
                     )
-                    model_used = "gemini-1.5-flash"
+                    model_used = "gemini-2.5-flash"
 
                 # Step 4: Format products for response
                 products = format_products_for_response(products_raw)
+
+                # Step 5: Analyze sentiment and update user profile
+                # Only analyze if we have a valid user_id
+                user_id = request.user_id or "demo-user"
+                if user_id and user_id != "anonymous":
+                    try:
+                        sentiment_analyzer = get_sentiment_analyzer(GEMINI_API_KEY)
+                        sentiment_features = await sentiment_analyzer.analyze_message(request.text)
+                        
+                        # Update user profile with sentiment data
+                        if sentiment_features:
+                            from vector_db.qdrant_service import get_qdrant_service
+                            qdrant = get_qdrant_service()
+                            
+                            for feature_data in sentiment_features:
+                                success = qdrant.add_evidence(
+                                    user_id=user_id,
+                                    feature=feature_data["feature"],
+                                    sentence=feature_data["sentence"],
+                                    sentiment=feature_data["sentiment"],
+                                    score=feature_data["score"]
+                                )
+                                if success:
+                                    print(f"✅ Updated {user_id} profile: {feature_data['feature']} -> {feature_data['sentiment']} ({feature_data['score']})")
+                            
+                            # Also sync to MongoDB for persistence
+                            profile = qdrant.get_user_profile(user_id)
+                            if profile:
+                                profiles_coll = db.get_collection("user_profiles")
+                                await profiles_coll.update_one(
+                                    {"user_id": user_id},
+                                    {"$set": profile},
+                                    upsert=True
+                                )
+                    except Exception as sentiment_error:
+                        print(f"Sentiment analysis error: {sentiment_error}")
+                        # Continue even if sentiment analysis fails
 
             except Exception as gemini_error:
                 print(f"Gemini/Product search error: {gemini_error}")
@@ -191,6 +255,7 @@ async def send_message(request: MessageRequest):
             "user_id": request.user_id or "anonymous",
             "products": products,
             "search_query": search_query,
+            "sentiment_features": sentiment_features,  # Store sentiment analysis results
         }
         result = await db.messages.insert_one(message_doc)
 
@@ -201,6 +266,7 @@ async def send_message(request: MessageRequest):
             "model": model_used,
             "products": products,
             "search_query": search_query,
+            "sentiment_features": sentiment_features,  # Return sentiment analysis to frontend
         }
 
     except Exception as e:

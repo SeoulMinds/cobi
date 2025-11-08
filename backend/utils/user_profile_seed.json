@@ -120,6 +120,20 @@
     ]
   },
   {
+    "user_id": "demo-user",
+    "feature_weights": {
+      "size": 0.5,
+      "color": 0.5,
+      "material": 0.5,
+      "brand": 0.5,
+      "price": 0.5,
+      "trend": 0.5,
+      "durability": 0.5,
+      "shipping": 0.5
+    },
+    "evidence": []
+  },
+  {
     "user_id": "demo_user",
     "feature_weights": {
       "size": 0.5,

@@ -188,12 +188,59 @@ Regardless of which method you use, access services at:
 |--------|----------|-------------|
 | `GET` | `/` | Root endpoint |
 | `GET` | `/health` | Health check + MongoDB status |
-| `POST` | `/api/chat` | Send message & get AI shopping assistant response |
+| `POST` | `/api/chat` | Send message & get AI shopping assistant response (with auto sentiment analysis) |
 | `GET` | `/api/messages` | Retrieve message history |
 | `GET` | `/api/products` | List products (with search & pagination) |
 | `GET` | `/api/products/{id}` | Get product details by ID |
 | `GET` | `/api/users` | List users (paginated) |
 | `GET` | `/api/user-profile/{user_id}` | Get user profile & shopping preferences |
+| `POST` | `/api/user-profile/add-evidence` | Manually add user preference evidence |
+| `GET` | `/api/user-profile/similar-users/{user_id}` | Find users with similar preferences |
+
+### 🎯 New Feature: Sentiment-Based User Profile Updates
+
+The chat assistant now automatically analyzes user messages to extract product feature preferences and update their profile in real-time!
+
+**How it works:**
+1. User chats: "The fit is perfect and I love the color!"
+2. AI analyzes sentiment for features (size, color, material, brand, price, trend, durability, shipping)
+3. User profile is automatically updated in Qdrant vector database
+4. Visualize changes in Qdrant Dashboard: http://localhost:6333/dashboard
+
+**Tracked Features:**
+- 👕 **size** - Fit and sizing preferences
+- 🎨 **color** - Color preferences
+- 🧵 **material** - Material quality preferences
+- 🏷️ **brand** - Brand preferences
+- 💰 **price** - Price sensitivity
+- ✨ **trend** - Style/trend preferences
+- 🛡️ **durability** - Durability concerns
+- 📦 **shipping** - Shipping speed preferences
+
+**See it in action:**
+```bash
+# Chat with sentiment analysis
+curl -X POST http://localhost:8001/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Perfect fit and I love the quality!",
+    "user_id": "demo-user"
+  }'
+
+# View updated profile
+curl http://localhost:8001/api/user-profile/demo-user
+
+# Find similar users
+curl http://localhost:8001/api/user-profile/similar-users/demo-user?limit=5
+```
+
+**📊 Visualize in Qdrant Dashboard:**
+1. Open http://localhost:6333/dashboard
+2. Navigate to `user_profiles` collection
+3. Click on any user point to see their preference vector
+4. View evidence history in the payload
+
+For detailed documentation, see: [User Profile Sentiment Analysis Guide](docs/USER_PROFILE_SENTIMENT.md)
 
 ### Example: Chat with AI Shopping Assistant
 
@@ -372,3 +419,6 @@ SHOPPING_ASSISTANT_SYSTEM_PROMPT = """You are COBI, a helpful shopping assistant
   docker compose -f compose.yaml -f compose.override.yaml exec frontend npm install
   docker compose -f compose.yaml -f compose.override.yaml exec backend pip install -r requirements.txt
   ```
+
+## Learn More
+- [More Documentation about Feature](/docs/README.md)

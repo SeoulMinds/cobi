@@ -4,6 +4,7 @@ Manages user feature weights and evidence based on sentiment analysis.
 Tracks feature importance like size, color, material, brand, price, etc.
 """
 import os
+import uuid
 from datetime import datetime
 from typing import Dict, List, Optional
 
@@ -23,6 +24,22 @@ FEATURE_DIMENSIONS = {
 }
 
 VECTOR_SIZE = 8  # Total feature dimensions
+
+
+def _user_id_to_uuid(user_id: str) -> str:
+    """
+    Convert a user_id string to a valid UUID for Qdrant.
+    Uses UUID v5 (namespace-based) for consistent conversion.
+    
+    Args:
+        user_id: User identifier string (can contain any characters)
+        
+    Returns:
+        UUID string that Qdrant will accept
+    """
+    # Use DNS namespace for consistent UUID generation
+    namespace = uuid.UUID('6ba7b810-9dad-11d1-80b4-00c04fd430c8')
+    return str(uuid.uuid5(namespace, user_id))
 
 
 class QdrantService:
@@ -75,6 +92,9 @@ class QdrantService:
             if "feature_weights" not in mongodb_profile:
                 return False
             
+            # Convert user_id to UUID for Qdrant compatibility
+            point_id = _user_id_to_uuid(user_id)
+            
             # Convert feature weights dict to vector
             feature_weights = mongodb_profile["feature_weights"]
             vector = [
@@ -84,14 +104,20 @@ class QdrantService:
             # Get evidence if available
             evidence = mongodb_profile.get("evidence", [])
             
+            # Store user_id in payload so we can retrieve it later
+            payload = {
+                "user_id": user_id,  # Store original user_id
+                "evidence": evidence
+            }
+            
             # Upsert to Qdrant
             self.client.upsert(
                 collection_name=self.collection_name,
                 points=[
                     PointStruct(
-                        id=user_id,
+                        id=point_id,  # Use UUID
                         vector=vector,
-                        payload={"evidence": evidence},
+                        payload=payload,
                     )
                 ],
             )
@@ -116,14 +142,18 @@ class QdrantService:
             }
         """
         try:
+            # Convert user_id to UUID for Qdrant lookup
+            point_id = _user_id_to_uuid(user_id)
+            
             results = self.client.retrieve(
                 collection_name=self.collection_name,
-                ids=[user_id]
+                ids=[point_id]
             )
             
             if results:
                 vector = results[0].vector
-                evidence = results[0].payload.get("evidence", [])
+                payload = results[0].payload
+                evidence = payload.get("evidence", [])
                 
                 # Ensure all weights are between 0.0 and 1.0
                 feature_weights = {
@@ -132,20 +162,22 @@ class QdrantService:
                 }
                 
                 return {
-                    "user_id": user_id,
+                    "user_id": user_id,  # Return original user_id
                     "feature_weights": feature_weights,
                     "evidence": evidence,
                 }
             else:
                 # Initialize new profile
                 default_vector = self._create_default_weights()
+                point_id = _user_id_to_uuid(user_id)
+                
                 self.client.upsert(
                     collection_name=self.collection_name,
                     points=[
                         PointStruct(
-                            id=user_id,
+                            id=point_id,
                             vector=default_vector,
-                            payload={"evidence": []},
+                            payload={"user_id": user_id, "evidence": []},
                         )
                     ],
                 )
@@ -232,14 +264,17 @@ class QdrantService:
             ]
             updated_vector[feature_idx] = new_weight
             
+            # Convert user_id to UUID for Qdrant
+            point_id = _user_id_to_uuid(user_id)
+            
             # Upsert to Qdrant
             self.client.upsert(
                 collection_name=self.collection_name,
                 points=[
                     PointStruct(
-                        id=user_id,
+                        id=point_id,  # Use UUID
                         vector=updated_vector,
-                        payload={"evidence": evidence_list},
+                        payload={"user_id": user_id, "evidence": evidence_list},
                     )
                 ],
             )
@@ -279,14 +314,17 @@ class QdrantService:
                 profile["feature_weights"][f] for f in sorted(FEATURE_DIMENSIONS.keys())
             ]
             
+            # Convert user_id to UUID for Qdrant
+            point_id = _user_id_to_uuid(user_id)
+            
             # Upsert to Qdrant
             self.client.upsert(
                 collection_name=self.collection_name,
                 points=[
                     PointStruct(
-                        id=user_id,
+                        id=point_id,  # Use UUID
                         vector=updated_vector,
-                        payload={"evidence": profile["evidence"]},
+                        payload={"user_id": user_id, "evidence": profile["evidence"]},
                     )
                 ],
             )
@@ -326,19 +364,27 @@ class QdrantService:
             
             # Filter out the query user and format results
             similar_users = []
+            query_point_id = _user_id_to_uuid(user_id)
+            
             for result in results:
-                if result.id != user_id:
-                    # Cosine similarity is already 0-1 range
-                    similarity = max(0.0, min(1.0, float(result.score)))
+                # Skip if it's the same user (compare UUIDs)
+                if result.id == query_point_id:
+                    continue
                     
-                    similar_users.append({
-                        "user_id": result.id,
-                        "similarity": similarity,  # Guaranteed to be 0.0 to 1.0
-                        "feature_weights": {
-                            feature: max(0.0, min(1.0, float(result.vector[idx])))
-                            for feature, idx in FEATURE_DIMENSIONS.items()
-                        },
-                    })
+                # Get the original user_id from payload
+                result_user_id = result.payload.get("user_id", str(result.id))
+                
+                # Cosine similarity is already 0-1 range
+                similarity = max(0.0, min(1.0, float(result.score)))
+                
+                similar_users.append({
+                    "user_id": result_user_id,  # Use original user_id from payload
+                    "similarity": similarity,  # Guaranteed to be 0.0 to 1.0
+                    "feature_weights": {
+                        feature: max(0.0, min(1.0, float(result.vector[idx])))
+                        for feature, idx in FEATURE_DIMENSIONS.items()
+                    },
+                })
             
             return similar_users[:limit]
             
