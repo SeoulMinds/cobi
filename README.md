@@ -15,13 +15,29 @@ A full-stack AI-driven web application built for **HackSeoul 2025**.
 ### Prerequisites
 Complete the Development Machine Setup Guide first (ensure Docker Desktop and VS Code are installed).
 
+**Important:** You'll need to generate `.env` files from the provided examples before proceeding.
+
 ### Clone and Setup
 
 ```bash
-git clone https://github.com/SeoulMinds/seoulminds-night-action.git
-cd seoulminds-night-action
+git clone https://github.com/SeoulMinds/cobi.git
+cd cobi
 git checkout -b yourname/your-feature  # Use your first name as prefix
 ```
+
+### Generate Environment Files
+
+Copy the `.env.example` files to create your local configuration:
+
+```bash
+# Root .env file (required for Docker Compose)
+cp .env.example .env
+
+# Frontend .env.local file (required for Vite)
+cp frontend/.env.example frontend/.env.local
+```
+
+**Note:** Update the generated `.env` and `frontend/.env.local` files with your actual configuration values (API keys, database credentials, etc.)
 
 ### Open in VS Code Dev Container
 
@@ -106,11 +122,28 @@ curl -X POST http://localhost:8000/api/chat \
 
 ### Configuration
 
-Environment variables (via `.env`):
+#### Generate Environment Files
+
+First, create `.env` files from the examples:
+
+```bash
+# Root .env (Docker Compose configuration)
+cp .env.example .env
+
+# Frontend .env.local (Vite configuration)
+cp frontend/.env.example frontend/.env.local
+```
+
+#### Environment Variables
+
+**Root `.env`** (via `.env.example`):
 - `MONGODB_URI` - MongoDB connection string
 - `FRONTEND_URL` - Frontend URL for CORS
 - `OPENAI_API_KEY` - Optional OpenAI API key
 - `GEMINI_API_KEY` - Optional Google Gemini API key
+- `MONGO_ADMIN_USER` / `MONGO_ADMIN_PASS` - MongoDB credentials
+- `JWT_SECRET` - Secret key for JWT tokens
+- `SESSION_SECRET` - Secret key for session management
 
 ---
 
@@ -149,9 +182,18 @@ npm run preview
 
 ### Environment Variables
 
-Create `frontend/.env.local` for development:
+Create `frontend/.env.local` from the example file:
+
+```bash
+cp frontend/.env.example frontend/.env.local
+```
+
+**Frontend `.env.local`** (from `frontend/.env.example`):
 ```
 VITE_API_BASE_URL=http://localhost:8000
+VITE_APP_TITLE=seoulminds
+VITE_APP_DESCRIPTION=hackseoulminds website
+VITE_API_TIMEOUT=10000
 ```
 
 ---

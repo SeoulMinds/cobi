@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-WORKDIR /seoulminds-night-action/backend
+WORKDIR /cobi/backend
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \

@@ -1,7 +1,7 @@
 # Frontend Dockerfile - Supports both production and development modes
 FROM node:22.19.0-alpine
 
-WORKDIR /seoulminds-night-action/frontend
+WORKDIR /cobi/frontend
 
 # Install build dependencies
 RUN apk add --no-cache git python3 make g++

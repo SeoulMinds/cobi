@@ -1,11 +1,11 @@
-name: seoulminds-night-action-${TAG}
+name: cobi-${TAG}
 
 x-common-env-file: &common-env-file
   - ./.env
 
 services:
   backend:
-    container_name: seoulminds-night-action-backend-${TAG}
+    container_name: cobi-backend-${TAG}
     build:
       context: ./backend
     ports:
@@ -20,7 +20,7 @@ services:
       mongodb:
         condition: service_healthy
     networks:
-      - seoulminds-night-action-network
+      - cobi-network
     healthcheck:
       test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
       interval: 10s
@@ -28,21 +28,21 @@ services:
       retries: 5
 
   frontend:
-    container_name: seoulminds-night-action-frontend-${TAG}
+    container_name: cobi-frontend-${TAG}
     build:
       context: ./frontend
     ports:
       - "${FRONTEND_PORT}:5173"
     environment:
-      VITE_API_BASE_URL: http://seoulminds-night-action-backend-${TAG}:8000
+      VITE_API_BASE_URL: http://cobi-backend-${TAG}:8000
     env_file: *common-env-file
     depends_on:
       - backend
     networks:
-      - seoulminds-night-action-network
+      - cobi-network
 
   mongodb:
-    container_name: seoulminds-night-action-mongodb-${TAG}
+    container_name: cobi-mongodb-${TAG}
     image: mongo:8.0.13
     ports:
       - "${MONGODB_PORT:-27017}:27017"
@@ -56,12 +56,12 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - seoulminds-night-action-network
+      - cobi-network
     volumes:
       - mongo_data:/data/db
 
   mongo-express:
-    container_name: seoulminds-night-action-mongo-express-${TAG}
+    container_name: cobi-mongo-express-${TAG}
     image: mongo-express:1.0.2-20
     ports:
       - "${MONGO_EXPRESS_PORT}:8081"
@@ -80,10 +80,10 @@ services:
     depends_on:
       - mongodb
     networks:
-      - seoulminds-night-action-network
+      - cobi-network
 
 networks:
-  seoulminds-night-action-network:
+  cobi-network:
     driver: bridge
 
 volumes:

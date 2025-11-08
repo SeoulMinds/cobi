@@ -5,14 +5,14 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - ./backend:/seoulminds-night-action/backend:cached
+      - ./backend:/cobi/backend:cached
 
   frontend:
     restart: "no"
     command: ["npm", "run", "dev"]
     volumes:
-      - ./frontend:/seoulminds-night-action/frontend:cached
-      - /seoulminds-night-action/frontend/node_modules
+      - ./frontend:/cobi/frontend:cached
+      - /cobi/frontend/node_modules
 
   mongo-express:
     restart: "no"

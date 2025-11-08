@@ -1,7 +1,7 @@
   # Dev container service - runs all services for development
 services:
   full-stack-devcontainer:
-    container_name: seoulminds-night-action-devcontainer-${TAG}
+    container_name: cobi-devcontainer-${TAG}
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile.devcontainer
@@ -16,12 +16,12 @@ services:
     command: tail -f /dev/null
     user: app
     volumes:
-      - .:/seoulminds-night-action:cached
-      - seoulminds-night-action-commandhistory:/var/seoulminds-night-action/commandhistory
-      - seoulminds-night-action-vscode-extensions:/home/app/.vscode-server/extensions
-      - seoulminds-night-action-vscode-data:/home/app/.vscode-server/data
+      - .:/cobi:cached
+      - cobi-commandhistory:/var/cobi/commandhistory
+      - cobi-vscode-extensions:/home/app/.vscode-server/extensions
+      - cobi-vscode-data:/home/app/.vscode-server/data
 
 volumes:
-  seoulminds-night-action-commandhistory:
-  seoulminds-night-action-vscode-extensions:
-  seoulminds-night-action-vscode-data:
+  cobi-commandhistory:
+  cobi-vscode-extensions:
+  cobi-vscode-data:
