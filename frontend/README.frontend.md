@@ -36,20 +36,6 @@ src/
 └── index.css         # Tailwind styles
 ```
 
-## API Configuration
-
-Set the backend API URL via environment variables:
-
-**Development (.env.local):**
-```
-VITE_API_BASE_URL=http://localhost:8001
-```
-
-**Production (.env.production):**
-```
-VITE_API_BASE_URL=http://backend:8001
-```
-
 ## Features
 
 - 💬 Real-time chat interface
@@ -85,25 +71,3 @@ Outputs optimized build to `dist/` folder.
 docker build -t seoulminds-frontend .
 docker run -p 5173:5173 seoulminds-frontend
 ```
-
-### Static Hosting
-The `dist/` folder can be deployed to any static host:
-- Vercel
-- Netlify
-- AWS S3 + CloudFront
-- GitHub Pages
-
-## Troubleshooting
-
-**Frontend can't reach backend:**
-- Check `VITE_API_BASE_URL` in `.env.local`
-- Verify backend is running: `curl http://localhost:8001/health`
-- Clear browser cache
-
-**Tailwind styles not loading:**
-- Run `npm install` to ensure dependencies are installed
-- Rebuild: `npm run build`
-
----
-
-**Happy building! 🎨**

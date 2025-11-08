@@ -1,6 +1,7 @@
-# SeoulMinds Night Action
+# SeoulMinds (Cobi)
 
-A full-stack AI-driven web application built for **HackSeoul 2025**.
+An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
+
 
 **Tech Stack:**
 - 🔙 Backend: FastAPI + Python + MongoDB
@@ -32,12 +33,9 @@ Copy the `.env.example` files to create your local configuration:
 ```bash
 # Root .env file (required for Docker Compose)
 cp .env.example .env
-
-# Frontend .env.local file (required for Vite)
-cp frontend/.env.example frontend/.env.local
 ```
 
-**Note:** Update the generated `.env` and `frontend/.env.local` files with your actual configuration values (API keys, database credentials, etc.)
+**Note:** Update the generated `.env` file with your actual configuration values (API keys, database credentials, etc.)
 
 ###  Running with raw Docker Compose
 
@@ -158,9 +156,6 @@ First, create `.env` files from the examples:
 ```bash
 # Root .env (Docker Compose configuration)
 cp .env.example .env
-
-# Frontend .env.local (Vite configuration)
-cp frontend/.env.example frontend/.env.local
 ```
 
 #### Environment Variables
