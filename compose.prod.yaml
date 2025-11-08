@@ -3,17 +3,17 @@
 
 services:
   frontend:
-    restart: always
+    restart: "always"
     environment:
       - NODE_ENV=production
 
   backend:
-    restart: always
+    restart: "always"
     environment:
       - PYTHONUNBUFFERED=1
 
   mongodb:
-    restart: always
+    restart: "always"
 
   mongo-express:
     restart: always

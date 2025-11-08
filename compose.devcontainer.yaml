@@ -7,7 +7,7 @@ services:
       dockerfile: .devcontainer/Dockerfile.devcontainer
     env_file:
       - ./.env
-    restart: no
+    restart: "unless-stopped"
     depends_on:
       - frontend
       - backend
