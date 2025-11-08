@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-08T08:14:19.427Z",
+  "generatedAt": "2025-11-08T14:26:46.318Z",
   "packages": [
     {
       "name": "@types/react",
@@ -39,6 +39,11 @@
     {
       "name": "react-dom",
       "version": "^18.2.0",
+      "dev": false
+    },
+    {
+      "name": "react-router-dom",
+      "version": "^6.14.1",
       "dev": false
     },
     {

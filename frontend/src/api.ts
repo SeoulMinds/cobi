@@ -48,4 +48,20 @@ export const checkHealth = async () => {
   return response.data;
 };
 
+export const getProducts = async (page = 1, limit = 20, q?: string) => {
+  const response = await apiClient.get('/api/products/', {
+    params: {
+      page,
+      limit,
+      q,
+    },
+  });
+  return response.data;
+};
+
+export const getProduct = async (id: string) => {
+  const response = await apiClient.get(`/api/products/${encodeURIComponent(id)}`);
+  return response.data;
+};
+
 export default apiClient;

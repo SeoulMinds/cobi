@@ -8,6 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from pydantic import BaseModel, Field
+from db.models import HealthResponse, MessageRequest, MessageResponse
+from db import seeder
+from db.connection import attach_db_to_app
+from routers import products as products_router
 
 # ============================================================================
 # Configuration
@@ -35,9 +39,27 @@ async def lifespan(app: FastAPI):
     try:
         db_client = AsyncIOMotorClient(MONGODB_URL)
         db = db_client.seoulminds_db
+        # attach to app.state in case routers need it
+        try:
+            attach_db_to_app(app, db_client, dbname=db.name)
+        except Exception:
+            # ignore attach failures here; routers can still access global db
+            pass
         # Verify connection
         await db.command("ping")
         print("✅ Connected to MongoDB")
+        # Attempt automatic seeding in non-production environments
+        try:
+            force = os.getenv("FORCE_DB_SEED", "0") in ("1", "true", "True")
+            env = os.getenv("ENVIRONMENT") or os.getenv("PYTHON_ENV") or os.getenv("FASTAPI_ENV") or os.getenv("ENV") or "development"
+            if env != "production" or force:
+                print("🌱 Running DB auto-seed check...")
+                seed_summary = await seeder.seed_if_empty(db, force=force)
+                print(f"✅ DB seeding result: {seed_summary}")
+            else:
+                print("⚠️ Skipping DB auto-seed in production")
+        except Exception as e:
+            print(f"❌ DB seeding failed: {e}")
     except Exception as e:
         print(f"❌ MongoDB connection failed: {e}")
         raise
@@ -70,30 +92,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# ============================================================================
-# Models
-# ============================================================================
-
-class HealthResponse(BaseModel):
-    status: str
-    mongodb: str
+# include routers
+app.include_router(products_router.router)
 
 
-class MessageRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=1000)
-    user_id: str | None = None
-
-
-class MessageResponse(BaseModel):
-    id: str = Field(alias="_id")
-    user_message: str
-    ai_response: str
-    model: str
-    timestamp: str
-
-    class Config:
-        populate_by_name = True
+# Models moved to `backend/models.py`
 
 
 # ============================================================================
@@ -189,6 +192,37 @@ async def get_messages(user_id: str | None = None, limit: int = 50):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error retrieving messages: {str(e)}",
         )
+
+
+@app.get("/api/products/{product_id}")
+async def get_product(product_id: str):
+    """Retrieve a single product by Mongo _id or product_id."""
+    if db is None:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Database connection failed")
+
+    coll = db.get_collection("products")
+    try:
+        # Try by _id first (as string) then by product_id
+        from bson import ObjectId
+
+        query = None
+        try:
+            query = {"_id": ObjectId(product_id)}
+        except Exception:
+            query = {"product_id": product_id}
+
+        doc = await coll.find_one(query)
+        if not doc:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        # Convert _id to string
+        doc["id"] = str(doc.get("_id"))
+        doc.pop("_id", None)
+        return doc
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/")
