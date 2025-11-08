@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set default backend port (can be overridden at runtime)
-ENV BACKEND_PORT=8000
+ENV BACKEND_PORT=8001
 
 # Expose port (dynamically set via ENV)
 EXPOSE ${BACKEND_PORT}

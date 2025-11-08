@@ -17,9 +17,9 @@ from routers import user_profile as user_profile_router
 try:
     from llm_api.gemini_service import get_gemini_service
     from llm_api.product_context import (
-        search_products_by_query,
         build_product_context_for_llm,
-        format_products_for_response
+        format_products_for_response,
+        search_products_by_query,
     )
     GEMINI_AVAILABLE = True
 except ImportError as e:
@@ -35,7 +35,7 @@ FRONTEND_PORT = os.getenv("FRONTEND_PORT", "8080")
 FRONTEND_URL = os.getenv("FRONTEND_URL", f"http://localhost:{FRONTEND_PORT}")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-BACKEND_PORT = int(os.getenv("BACKEND_PORT", "8000"))
+BACKEND_PORT = int(os.getenv("BACKEND_PORT", "8001"))
 
 # Global database connection
 db_client: AsyncIOMotorClient | None = None

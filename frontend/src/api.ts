@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // @ts-ignore - Vite env type
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || `http://localhost:${import.meta.env.VITE_BACKEND_PORT || '8000'}`;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || `http://localhost:${import.meta.env.VITE_BACKEND_PORT || '8001'}`;
 
 console.log('API_BASE_URL:', API_BASE_URL);
 
