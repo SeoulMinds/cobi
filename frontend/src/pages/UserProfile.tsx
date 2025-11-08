@@ -120,27 +120,19 @@ const UserProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Feature Weights */}
-          <Card>
+          {/* All Feature Weights */}
+          <Card className="md:col-span-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-blue-500 to-green-500"></div>
                 Feature Weights
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
               {renderPreferenceBar('size', profile.feature_weights.size)}
               {renderPreferenceBar('color', profile.feature_weights.color)}
               {renderPreferenceBar('material', profile.feature_weights.material)}
               {renderPreferenceBar('brand', profile.feature_weights.brand)}
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Shopping Behavior</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
               {renderPreferenceBar('price', profile.feature_weights.price)}
               {renderPreferenceBar('trend', profile.feature_weights.trend)}
               {renderPreferenceBar('durability', profile.feature_weights.durability)}
@@ -191,9 +183,16 @@ const UserProfile = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold mb-2">Feature Weights (0.0 - 1.0)</h4>
-              <p className="text-sm text-muted-foreground">
-                Each feature represents how important that aspect is to you. Higher values mean stronger preferences.
+              <h4 className="font-semibold mb-2">8 Feature Weights (0.0 - 1.0)</h4>
+              <p className="text-sm text-muted-foreground mb-2">
+                Your preferences are tracked across 8 key dimensions:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                <li>• <strong>Product Features:</strong> Size, Color, Material, Brand</li>
+                <li>• <strong>Shopping Behavior:</strong> Price, Trend, Durability, Shipping</li>
+              </ul>
+              <p className="text-sm text-muted-foreground mt-2">
+                Higher values mean stronger preferences for that feature.
               </p>
             </div>
             <div>

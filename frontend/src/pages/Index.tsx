@@ -1,9 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProductCard } from "@/components/ProductCard";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { BarChart3 } from "lucide-react";
 
 const products = [
   { id: "1", name: "Premium Sneakers", price: 129, category: "Footwear", image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1738680947-pegasus-premium-1000px-67a229b4b7eae.jpg?crop=1xw:1xh;center,top&resize=980:*" },
@@ -15,8 +12,6 @@ const products = [
 ];
 
 const Index = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -47,18 +42,6 @@ const Index = () => {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Our AI shopping assistant is here to help you find exactly what you're looking for. Click the chat icon to get started!
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={() => navigate('/profile')}
-              size="lg"
-              variant="outline"
-              className="gap-2"
-            >
-              <BarChart3 className="h-5 w-5" />
-              View Your Profile
-            </Button>
-          </div>
         </div>
       </section>
     </div>
