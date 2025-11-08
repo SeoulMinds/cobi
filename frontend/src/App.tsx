@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { sendMessage, getMessages, checkHealth, MessageResponse } from './api';
+import ChatPanel from './components/chat/ChatPanel';
 
 interface HealthResponse {
   status: string;
@@ -69,6 +70,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
+      <ChatPanel />
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Chat Area */}
