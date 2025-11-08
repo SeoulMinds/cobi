@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,13 +15,25 @@ interface Message {
   products?: Product[];
 }
 
-export const ChatAssistant = () => {
+interface ChatAssistantProps {
+  splitView?: boolean;
+}
+
+export const ChatAssistant = ({ splitView = false }: ChatAssistantProps) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(splitView); // Auto-open in split view
   const [isThinking, setIsThinking] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState<string>("");
+
+  // Auto-open chat when in split view mode
+  useEffect(() => {
+    if (splitView) {
+      setIsOpen(true);
+    }
+  }, [splitView]);
 
   // Load existing messages when component mounts
   useEffect(() => {
@@ -116,8 +128,8 @@ export const ChatAssistant = () => {
 
   return (
     <>
-      {/* Chat Toggle Button - Hidden when chat is open */}
-      {!isOpen && (
+      {/* Chat Toggle Button - Hidden when chat is open or in split view */}
+      {!isOpen && !splitView && (
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
@@ -129,7 +141,10 @@ export const ChatAssistant = () => {
 
       {/* Chat Panel */}
       <div
-        className={`fixed right-0 top-16 h-[calc(100vh-4rem)] w-full md:w-96 bg-background border-l border-border shadow-xl z-40 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`${splitView
+          ? "relative h-full w-full border-l border-border"
+          : "fixed right-0 top-16 h-[calc(100vh-4rem)] w-full md:w-96 shadow-xl z-40 transition-transform duration-300 ease-in-out"
+          } bg-background border-border ${!splitView && (isOpen ? "translate-x-0" : "translate-x-full")
         }`}
       >
         <Card className="h-full rounded-none border-0 flex flex-col">
@@ -144,15 +159,18 @@ export const ChatAssistant = () => {
                 <p className="text-xs text-muted-foreground">Always here to help</p>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-destructive/10 hover:text-destructive shrink-0 rounded-full bg-background/80 border border-border z-10"
-              aria-label="Close chat"
-            >
-              <X className="h-7 w-7 text-foreground stroke-[3]" />
-            </Button>
+            {/* Close button - only in floating mode */}
+            {!splitView && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+                className="hover:bg-destructive/10 hover:text-destructive shrink-0 rounded-full bg-background/80 border border-border z-10"
+                aria-label="Close chat"
+              >
+                <X className="h-7 w-7 text-foreground stroke-[3]" />
+              </Button>
+            )}
           </div>
 
           {/* Messages */}
