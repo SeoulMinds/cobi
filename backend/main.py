@@ -3,15 +3,15 @@
 import os
 from contextlib import asynccontextmanager
 
+from db import seeder
+from db.connection import attach_db_to_app
+from db.models import HealthResponse, MessageRequest
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
-from pydantic import BaseModel, Field
-from db.models import HealthResponse, MessageRequest, MessageResponse
-from db import seeder
-from db.connection import attach_db_to_app
 from routers import products as products_router
+from routers import user_profile as user_profile_router
 
 # Import Gemini service
 try:
@@ -109,6 +109,7 @@ app.add_middleware(
 
 # include routers
 app.include_router(products_router.router)
+app.include_router(user_profile_router.router)
 
 
 # Models moved to `backend/models.py`

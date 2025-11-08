@@ -16,10 +16,14 @@ services:
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       FRONTEND_URL: ${FRONTEND_URL:-}
       BACKEND_PORT: ${BACKEND_PORT}
+      QDRANT_HOST: qdrant
+      QDRANT_PORT: 6333
     env_file: *common-env-file
     depends_on:
       mongodb:
         condition: service_healthy
+      qdrant:
+        condition: service_started
     networks:
       - cobi-network
     healthcheck:
@@ -85,9 +89,23 @@ services:
     networks:
       - cobi-network
 
+  qdrant:
+    container_name: cobi-qdrant-${TAG}
+    image: qdrant/qdrant:latest
+    ports:
+      - "${QDRANT_PORT:-6333}:6333"
+      - "6334:6334"
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: "6334"
+    networks:
+      - cobi-network
+    volumes:
+      - qdrant_data:/qdrant/storage
+
 networks:
   cobi-network:
     driver: bridge
 
 volumes:
   mongo_data:
+  qdrant_data:

@@ -91,4 +91,33 @@ export const getProduct = async (id: string) => {
   return response.data;
 };
 
+// User Profile API
+export const getUserProfile = async (userId: string) => {
+  const response = await apiClient.get(`/api/user-profile/${userId}`);
+  return response.data;
+};
+
+export const updateUserProfileFromProduct = async (data: {
+  user_id: string;
+  product_id: string;
+  interaction_type: string;
+  product_data: Product;
+}) => {
+  const response = await apiClient.post('/api/user-profile/update-from-product', data);
+  return response.data;
+};
+
+export const updateUserPreferences = async (data: {
+  user_id: string;
+  preferences: Record<string, number>;
+}) => {
+  const response = await apiClient.post('/api/user-profile/update-preferences', data);
+  return response.data;
+};
+
+export const getPreferenceDimensions = async () => {
+  const response = await apiClient.get('/api/user-profile/dimensions');
+  return response.data;
+};
+
 export default apiClient;

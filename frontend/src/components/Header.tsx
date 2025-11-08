@@ -1,7 +1,10 @@
-import { ShoppingBag, Search, User, Menu } from "lucide-react";
+import { ShoppingBag, Search, User, Menu, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -28,6 +31,14 @@ export const Header = () => {
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon">
             <Search className="h-5 w-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate('/profile')}
+            title="View Profile"
+          >
+            <BarChart3 className="h-5 w-5" />
           </Button>
           <Button variant="ghost" size="icon">
             <User className="h-5 w-5" />
