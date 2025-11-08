@@ -12,6 +12,7 @@ from db.models import HealthResponse, MessageRequest, MessageResponse
 from db import seeder
 from db.connection import attach_db_to_app
 from routers import products as products_router
+from routers import users as users_router
 
 # ============================================================================
 # Configuration
@@ -94,6 +95,7 @@ app.add_middleware(
 
 # include routers
 app.include_router(products_router.router)
+app.include_router(users_router.router)
 
 
 # Models moved to `backend/models.py`
