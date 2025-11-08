@@ -25,6 +25,7 @@ try:
 except ImportError as e:
     print(f"Warning: Could not import Gemini service: {e}")
     GEMINI_AVAILABLE = False
+from routers import users as users_router
 
 # ============================================================================
 # Configuration
@@ -110,6 +111,7 @@ app.add_middleware(
 # include routers
 app.include_router(products_router.router)
 app.include_router(user_profile_router.router)
+app.include_router(users_router.router)
 
 
 # Models moved to `backend/models.py`

@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import List, Optional, Any
 from pydantic import BaseModel, Field
-
+from bson import ObjectId
 
 class SellerBusinessInfo(BaseModel):
     business_name: Optional[str]
@@ -95,13 +95,27 @@ class Product(BaseModel):
     is_new: Optional[bool]
     is_best: Optional[bool]
 
-    class Config:
-        populate_by_name = True
-        json_encoders = {"_id": str}
+    model_config = {
+        "populate_by_name": True,
+        "json_encoders": {ObjectId: str},
+    }
 
 
 def get_products_collection(db) -> Any:
     return db.get_collection("products")
+
+def get_users_collection(db) -> Any:
+    return db.get_collection("users")
+
+class User(BaseModel):
+    id: Optional[str] = Field(alias="_id")
+    user_id: Optional[int]
+    username: Optional[str]
+
+    model_config = {
+        "populate_by_name": True,
+        "json_encoders": {ObjectId: str},
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -128,5 +142,7 @@ class MessageResponse(BaseModel):
     products: Optional[List[Product]] = []  # Product recommendations
     search_query: Optional[str] = None  # What was searched
 
-    class Config:
-        populate_by_name = True
+    model_config = {
+        "populate_by_name": True,
+        "json_encoders": {ObjectId: str},
+    }
