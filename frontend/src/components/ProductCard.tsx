@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart, Heart } from "lucide-react";
@@ -30,6 +31,8 @@ export const ProductCard = ({
   brand,
   is_new
 }: ProductCardProps) => {
+  const navigate = useNavigate();
+
   // Use title as fallback to name
   const displayName = name || title || 'Product';
 
@@ -41,8 +44,17 @@ export const ProductCard = ({
     ? category.join(', ')
     : (category || brand || 'Product');
 
+  const handleCardClick = () => {
+    if (id) {
+      navigate(`/product/${id}`);
+    }
+  };
+
   return (
-    <Card className="group overflow-hidden border-border hover:shadow-card-hover transition-all duration-300">
+    <Card
+      className="group overflow-hidden border-border hover:shadow-card-hover transition-all duration-300 cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="relative aspect-square overflow-hidden bg-muted">
         {displayImage && (
           <img
