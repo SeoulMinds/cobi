@@ -122,12 +122,12 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
       {/* Chat Panel */}
       <div
         className={`${splitView
-          ? "relative h-full w-full border-l border-border"
+          ? "relative w-full border-l border-border flex flex-col h-full"
           : "fixed right-0 top-16 h-[calc(100vh-4rem)] w-full md:w-96 shadow-xl z-40 transition-transform duration-300 ease-in-out"
           } bg-background border-border ${!splitView && (isOpen ? "translate-x-0" : "translate-x-full")
         }`}
       >
-        <Card className="h-full rounded-none border-0 flex flex-col">
+        <Card className={`${splitView ? 'h-full' : 'h-full'} rounded-none border-0 flex flex-col`}>
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-gradient-to-r from-primary/10 to-accent/10">
             <div className="flex items-center gap-3">

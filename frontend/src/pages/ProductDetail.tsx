@@ -439,13 +439,13 @@ const ProductDetail = () => {
 
     // Split view with chat (when coming from chat)
     return (
-        <div className="min-h-screen bg-background flex flex-col">
+      <div className="h-screen bg-background flex flex-col overflow-hidden">
             <Header />
 
             <div className="flex-1 flex overflow-hidden">
                 {/* Product Content - Left Side */}
                 <div className="flex-1 overflow-y-auto">
-                    <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-8 h-full">
                         <div className="flex items-center justify-between mb-6">
                             <Button onClick={() => navigate('/')} variant="outline">
                                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -596,7 +596,7 @@ const ProductDetail = () => {
                 </div>
 
                 {/* Chat Assistant - Right Side */}
-                <div className="w-full md:w-96 flex flex-col">
+          <div className="w-full md:w-96 flex flex-col h-full overflow-hidden">
                     <ChatAssistant
                         splitView={true}
                     />
