@@ -338,11 +338,3 @@ MongoDB (Persistence)
 Qdrant Dashboard (Visualization)
 ```
 
-## Future Enhancements
-
-- [ ] Multi-language sentiment analysis (Korean, English, etc.)
-- [ ] Product-specific preference tracking
-- [ ] Time-based preference decay
-- [ ] Preference-based product ranking
-- [ ] User cluster visualization
-- [ ] Real-time dashboard updates via WebSocket
