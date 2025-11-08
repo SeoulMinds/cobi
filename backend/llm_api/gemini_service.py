@@ -1,6 +1,7 @@
 """Gemini LLM service for shopping assistant using LangChain."""
 
 import os
+import asyncio
 from typing import Optional
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.schema import SystemMessage, HumanMessage
@@ -11,7 +12,7 @@ from .prompts import SHOPPING_ASSISTANT_SYSTEM_PROMPT, create_user_message_with_
 class GeminiService:
     """Service class for interacting with Gemini AI via LangChain."""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-2.5-flash"):
+    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-2.5-flash", max_retries: int = 3):
         """
         Initialize Gemini service.
 
@@ -19,12 +20,14 @@ class GeminiService:
             api_key: Google API key. If None, reads from GEMINI_API_KEY env var
             model: Model name to use (default: gemini-1.5-flash for speed)
                   Options: gemini-1.5-flash, gemini-1.5-pro
+            max_retries: Maximum number of retries for empty responses (default: 3)
         """
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY not found in environment or not provided")
 
         self.model = model
+        self.max_retries = max_retries
         self.llm = self._initialize_llm()
 
     def _initialize_llm(self) -> ChatGoogleGenerativeAI:
@@ -54,30 +57,56 @@ class GeminiService:
         Returns:
             AI-generated response as a string
         """
-        try:
-            # Build messages list
-            messages = []
+        for attempt in range(self.max_retries):
+            try:
+                # Build messages list
+                messages = []
 
-            # Add system prompt (converted to human message by LangChain)
-            messages.append(SystemMessage(content=SHOPPING_ASSISTANT_SYSTEM_PROMPT))
+                # Add system prompt (converted to human message by LangChain)
+                messages.append(SystemMessage(content=SHOPPING_ASSISTANT_SYSTEM_PROMPT))
 
-            # Add conversation history if provided
-            if conversation_history:
-                messages.extend(conversation_history)
+                # Add conversation history if provided
+                if conversation_history:
+                    messages.extend(conversation_history)
 
-            # Add current user query with optional product context
-            user_message = create_user_message_with_context(user_query, product_context)
-            messages.append(HumanMessage(content=user_message))
+                # Add current user query with optional product context
+                user_message = create_user_message_with_context(user_query, product_context)
+                messages.append(HumanMessage(content=user_message))
 
-            # Generate response
-            response = await self.llm.ainvoke(messages)
+                # Generate response
+                response = await self.llm.ainvoke(messages)
+                response_content = response.content.strip() if response.content else ""
 
-            return response.content
+                # Check if response is empty
+                if not response_content:
+                    print(f"Empty response from Gemini (attempt {attempt + 1}/{self.max_retries})")
+                    if attempt < self.max_retries - 1:
+                        # Wait before retrying with exponential backoff
+                        wait_time = 2 ** attempt  # 1s, 2s, 4s...
+                        print(f"Retrying in {wait_time} seconds...")
+                        await asyncio.sleep(wait_time)
+                        continue
+                    else:
+                        # All retries exhausted, return fallback
+                        print("All retries exhausted, returning fallback response")
+                        return self._get_fallback_response(user_query)
 
-        except Exception as e:
-            # Log error and return user-friendly message
-            print(f"Error generating Gemini response: {str(e)}")
-            return self._get_fallback_response(user_query)
+                return response_content
+
+            except Exception as e:
+                # Log error and return user-friendly message
+                print(f"Error generating Gemini response (attempt {attempt + 1}/{self.max_retries}): {str(e)}")
+                if attempt < self.max_retries - 1:
+                    # Wait before retrying with exponential backoff
+                    wait_time = 2 ** attempt
+                    print(f"Retrying in {wait_time} seconds...")
+                    await asyncio.sleep(wait_time)
+                    continue
+                else:
+                    return self._get_fallback_response(user_query)
+
+        # Should not reach here, but just in case
+        return self._get_fallback_response(user_query)
 
     def _get_fallback_response(self, user_query: str) -> str:
         """Provide a fallback response when Gemini fails."""

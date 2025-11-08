@@ -6,6 +6,7 @@ Analyzes user messages to identify:
 - Sentiment score (-1.0 to 1.0)
 """
 import re
+import asyncio
 from typing import Dict, List, Optional
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.schema import SystemMessage, HumanMessage
@@ -79,8 +80,14 @@ Now analyze this message:"""
 class SentimentAnalyzer:
     """Analyzes user messages for product feature sentiment."""
     
-    def __init__(self, gemini_api_key: str):
-        """Initialize the sentiment analyzer with Gemini."""
+    def __init__(self, gemini_api_key: str, max_retries: int = 3):
+        """Initialize the sentiment analyzer with Gemini.
+        
+        Args:
+            gemini_api_key: Google Gemini API key
+            max_retries: Maximum number of retries for empty responses (default: 3)
+        """
+        self.max_retries = max_retries
         self.llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash-exp",
             google_api_key=gemini_api_key,
@@ -108,36 +115,64 @@ class SentimentAnalyzer:
                 ...
             ]
         """
-        try:
-            # Build prompt
-            messages = [
-                SystemMessage(content=SENTIMENT_ANALYSIS_PROMPT),
-                HumanMessage(content=user_message)
-            ]
-            
-            # Get response from Gemini
-            response = await self.llm.ainvoke(messages)
-            
-            # Parse JSON response
-            content = response.content.strip()
-            
-            # Extract JSON from markdown code blocks if present
-            if "```json" in content:
-                content = content.split("```json")[1].split("```")[0].strip()
-            elif "```" in content:
-                content = content.split("```")[1].split("```")[0].strip()
-            
-            result = json.loads(content)
-            
-            return result.get("features", [])
-            
-        except json.JSONDecodeError as e:
-            print(f"Failed to parse sentiment analysis JSON: {e}")
-            print(f"Raw response: {response.content if 'response' in locals() else 'N/A'}")
-            return []
-        except Exception as e:
-            print(f"Error in sentiment analysis: {e}")
-            return []
+        for attempt in range(self.max_retries):
+            try:
+                # Build prompt
+                messages = [
+                    SystemMessage(content=SENTIMENT_ANALYSIS_PROMPT),
+                    HumanMessage(content=user_message)
+                ]
+                
+                # Get response from Gemini
+                response = await self.llm.ainvoke(messages)
+                
+                # Parse JSON response
+                content = response.content.strip() if response.content else ""
+                
+                # Check if response is empty
+                if not content:
+                    print(f"Empty sentiment analysis response (attempt {attempt + 1}/{self.max_retries})")
+                    if attempt < self.max_retries - 1:
+                        wait_time = 2 ** attempt
+                        print(f"Retrying in {wait_time} seconds...")
+                        await asyncio.sleep(wait_time)
+                        continue
+                    else:
+                        print("All retries exhausted, using keyword-based fallback")
+                        return self._keyword_based_analysis(user_message)
+                
+                # Extract JSON from markdown code blocks if present
+                if "```json" in content:
+                    content = content.split("```json")[1].split("```")[0].strip()
+                elif "```" in content:
+                    content = content.split("```")[1].split("```")[0].strip()
+                
+                result = json.loads(content)
+                
+                return result.get("features", [])
+                
+            except json.JSONDecodeError as e:
+                print(f"Failed to parse sentiment analysis JSON (attempt {attempt + 1}/{self.max_retries}): {e}")
+                print(f"Raw response: {response.content if 'response' in locals() else 'N/A'}")
+                if attempt < self.max_retries - 1:
+                    wait_time = 2 ** attempt
+                    print(f"Retrying in {wait_time} seconds...")
+                    await asyncio.sleep(wait_time)
+                    continue
+                else:
+                    return self._keyword_based_analysis(user_message)
+            except Exception as e:
+                print(f"Error in sentiment analysis (attempt {attempt + 1}/{self.max_retries}): {e}")
+                if attempt < self.max_retries - 1:
+                    wait_time = 2 ** attempt
+                    print(f"Retrying in {wait_time} seconds...")
+                    await asyncio.sleep(wait_time)
+                    continue
+                else:
+                    return self._keyword_based_analysis(user_message)
+        
+        # Should not reach here, but just in case
+        return self._keyword_based_analysis(user_message)
     
     def _keyword_based_analysis(self, user_message: str) -> List[Dict]:
         """
