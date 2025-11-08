@@ -69,10 +69,53 @@ async def seed_products_if_empty(db: AsyncIOMotorDatabase, *, force: bool = Fals
     except Exception as e:
         return {"status": "error", "reason": str(e)}
 
+async def seed_users_if_empty(db: AsyncIOMotorDatabase, *, force: bool = False) -> dict[str, Any]:
+    """Seed the `users` collection with default users if it's empty.
+
+    Args:
+        db: motor database instance
+        force: when True, will seed regardless of environment and even if some
+            documents exist (but will not delete existing documents).
+
+    Returns:
+        A summary dict with inserted count and status.
+    """
+    env = os.getenv("NODE_ENV") or os.getenv("ENV") or os.getenv("PY_ENV") or os.getenv("PYTHON_ENV") or os.getenv("FASTAPI_ENV") or os.getenv("ENVIRONMENT")
+    # Default to development if not set
+    env = env or os.getenv("ENVIRONMENT", "development")
+
+    if env == "production" and not force:
+        return {"status": "skipped", "reason": "production environment"}
+
+    users_coll = db.get_collection("users")
+
+    existing_count = await users_coll.count_documents({})
+    if existing_count > 0 and not force:
+        return {"status": "skipped", "reason": "users collection not empty", "existing": existing_count}
+
+    base_usernames = [
+        "Customer"
+    ]
+
+    # Determine starting user_id (continue after max existing user_id if any)
+    max_doc = await users_coll.find_one(sort=[("user_id", -1)], projection={"user_id": 1})
+    start_id = 1
+    if max_doc and isinstance(max_doc.get("user_id"), int):
+        start_id = max_doc["user_id"] + 1
+
+    # Assign incremental user_id starting from start_id
+    default_users = [{"username": name, "user_id": start_id + idx} for idx, name in enumerate(base_usernames)]
+
+    try:
+        result = await users_coll.insert_many(default_users)
+        return {"status": "inserted", "inserted_count": len(result.inserted_ids), "inserted_ids": [str(_id) for _id in result.inserted_ids]}
+    except Exception as e:
+        return {"status": "error", "reason": str(e)}
 
 async def seed_if_empty(db: AsyncIOMotorDatabase, *, force: bool = False) -> dict[str, Any]:
     """Top-level seeding helper. Currently seeds only products but can be
     extended to handle more collections."""
     summary = {}
     summary["products"] = await seed_products_if_empty(db, force=force)
+    summary["users"] = await seed_users_if_empty(db, force=force)
     return summary
