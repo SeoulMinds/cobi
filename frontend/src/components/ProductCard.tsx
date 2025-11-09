@@ -8,6 +8,7 @@ interface ProductCardProps {
   title?: string;
   name?: string;
   price?: number;
+  currency?: string;
   image?: string;
   images?: string[];
   category?: string | string[];
@@ -25,6 +26,7 @@ export const ProductCard = ({
   title,
   name,
   price,
+  currency,
   image,
   images,
   category,
@@ -84,7 +86,7 @@ export const ProductCard = ({
           <h3 className="font-semibold text-foreground mt-1">{displayName}</h3>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-foreground">${price || 0}</span>
+          <span className="text-xl font-bold text-foreground">{(price || 0).toLocaleString()} {currency || 'KRW'}</span>
           <Button size="sm" className="bg-hero-gradient hover:opacity-90">
             <ShoppingCart className="h-4 w-4 mr-2" />
             Add

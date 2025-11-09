@@ -131,14 +131,20 @@ class SentimentAnalyzer:
                 
                 # Check if response is empty
                 if not content:
-                    print(f"Empty sentiment analysis response (attempt {attempt + 1}/{self.max_retries})")
                     if attempt < self.max_retries - 1:
+                        print(
+                            f"⚠️  Empty sentiment analysis response "
+                            f"(attempt {attempt + 1}/{self.max_retries})"
+                        )
                         wait_time = 2 ** attempt
-                        print(f"Retrying in {wait_time} seconds...")
+                        print(f"   Retrying in {wait_time} seconds...")
                         await asyncio.sleep(wait_time)
                         continue
                     else:
-                        print("All retries exhausted, using keyword-based fallback")
+                        print(
+                            "ℹ️  All retry attempts completed. "
+                            "Using keyword-based sentiment analysis."
+                        )
                         return self._keyword_based_analysis(user_message)
                 
                 # Extract JSON from markdown code blocks if present
@@ -152,23 +158,40 @@ class SentimentAnalyzer:
                 return result.get("features", [])
                 
             except json.JSONDecodeError as e:
-                print(f"Failed to parse sentiment analysis JSON (attempt {attempt + 1}/{self.max_retries}): {e}")
-                print(f"Raw response: {response.content if 'response' in locals() else 'N/A'}")
+                error_msg = (
+                    f"⚠️  Failed to parse sentiment JSON "
+                    f"(attempt {attempt + 1}/{self.max_retries}): {e}"
+                )
+                print(error_msg)
+                raw = response.content if 'response' in locals() else 'N/A'
+                print(f"   Raw response: {raw}")
                 if attempt < self.max_retries - 1:
                     wait_time = 2 ** attempt
-                    print(f"Retrying in {wait_time} seconds...")
+                    print(f"   Retrying in {wait_time} seconds...")
                     await asyncio.sleep(wait_time)
                     continue
                 else:
+                    print(
+                        "ℹ️  All retry attempts completed. "
+                        "Using keyword-based sentiment analysis."
+                    )
                     return self._keyword_based_analysis(user_message)
             except Exception as e:
-                print(f"Error in sentiment analysis (attempt {attempt + 1}/{self.max_retries}): {e}")
+                error_msg = (
+                    f"⚠️  Error in sentiment analysis "
+                    f"(attempt {attempt + 1}/{self.max_retries}): {e}"
+                )
+                print(error_msg)
                 if attempt < self.max_retries - 1:
                     wait_time = 2 ** attempt
-                    print(f"Retrying in {wait_time} seconds...")
+                    print(f"   Retrying in {wait_time} seconds...")
                     await asyncio.sleep(wait_time)
                     continue
                 else:
+                    print(
+                        "ℹ️  All retry attempts completed. "
+                        "Using keyword-based sentiment analysis."
+                    )
                     return self._keyword_based_analysis(user_message)
         
         # Should not reach here, but just in case

@@ -228,11 +228,11 @@ export const ChatAssistant = ({ splitView = false, onChatOpen }: ChatAssistantPr
                                 </p>
                                 <div className="flex items-center gap-2 mt-1">
                                   <span className="text-lg font-bold text-foreground">
-                                    ${product.price || 0}
+                                    {(product.price || 0).toLocaleString()} {product.currency || 'KRW'}
                                   </span>
                                   {product.original_price && product.original_price > (product.price || 0) && (
                                     <span className="text-xs text-muted-foreground line-through">
-                                      ${product.original_price}
+                                      {product.original_price.toLocaleString()} {product.currency || 'KRW'}
                                     </span>
                                   )}
                                 </div>

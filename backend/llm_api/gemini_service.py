@@ -79,30 +79,44 @@ class GeminiService:
 
                 # Check if response is empty
                 if not response_content:
-                    print(f"Empty response from Gemini (attempt {attempt + 1}/{self.max_retries})")
                     if attempt < self.max_retries - 1:
+                        print(
+                            f"⚠️  Received empty response from Gemini "
+                            f"(attempt {attempt + 1}/{self.max_retries})"
+                        )
                         # Wait before retrying with exponential backoff
                         wait_time = 2 ** attempt  # 1s, 2s, 4s...
-                        print(f"Retrying in {wait_time} seconds...")
+                        print(f"   Retrying in {wait_time} seconds...")
                         await asyncio.sleep(wait_time)
                         continue
                     else:
                         # All retries exhausted, return fallback
-                        print("All retries exhausted, returning fallback response")
+                        print(
+                            "ℹ️  All retry attempts completed. "
+                            "Using fallback response for better UX."
+                        )
                         return self._get_fallback_response(user_query)
 
                 return response_content
 
             except Exception as e:
                 # Log error and return user-friendly message
-                print(f"Error generating Gemini response (attempt {attempt + 1}/{self.max_retries}): {str(e)}")
+                error_msg = (
+                    f"⚠️  Error generating response "
+                    f"(attempt {attempt + 1}/{self.max_retries}): {str(e)}"
+                )
+                print(error_msg)
                 if attempt < self.max_retries - 1:
                     # Wait before retrying with exponential backoff
                     wait_time = 2 ** attempt
-                    print(f"Retrying in {wait_time} seconds...")
+                    print(f"   Retrying in {wait_time} seconds...")
                     await asyncio.sleep(wait_time)
                     continue
                 else:
+                    print(
+                        "ℹ️  All retry attempts completed. "
+                        "Using fallback response for better UX."
+                    )
                     return self._get_fallback_response(user_query)
 
         # Should not reach here, but just in case
@@ -110,9 +124,25 @@ class GeminiService:
 
     def _get_fallback_response(self, user_query: str) -> str:
         """Provide a fallback response when Gemini fails."""
+        # Check if query is about product availability or stock
+        query_lower = user_query.lower()
+        stock_keywords = [
+            'stock', 'available', 'in stock', 'buy', 'purchase', 'get'
+        ]
+        if any(keyword in query_lower for keyword in stock_keywords):
+            return (
+                "I apologize, but I'm currently unable to check our "
+                "inventory status. Our stock information may be temporarily "
+                "unavailable. Please check back in a few moments, or contact "
+                "our support team for immediate assistance!"
+            )
+        
+        # General fallback for other queries
         return (
-            "I'm having trouble processing your request right now. "
-            "Please try again in a moment, or feel free to browse our products directly!"
+            "I'm currently experiencing some difficulty accessing "
+            "information to help you with that. Feel free to browse our "
+            "products directly, or try asking me again in a moment. "
+            "I'm here to help!"
         )
 
     async def simple_chat(self, user_query: str) -> str:

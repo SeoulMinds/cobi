@@ -218,12 +218,12 @@ const ProductDetail = () => {
                                 <CardContent className="p-6">
                                     <div className="flex items-baseline gap-3 mb-4">
                                         <span className="text-4xl font-bold text-foreground">
-                                            ${product.price || 0}
+                          {(product.price || 0).toLocaleString()} {product.currency || 'KRW'}
                                         </span>
                                         {product.original_price && product.original_price > (product.price || 0) && (
                                             <>
                                                 <span className="text-xl text-muted-foreground line-through">
-                                                    ${product.original_price}
+                              {product.original_price.toLocaleString()} {product.currency || 'KRW'}
                                                 </span>
                                                 <Badge variant="destructive">
                                                     {product.discount_rate}% OFF
@@ -370,12 +370,12 @@ const ProductDetail = () => {
                                 <CardContent className="p-6">
                                     <div className="flex items-baseline gap-3 mb-4">
                                         <span className="text-4xl font-bold text-foreground">
-                                            ${product.price || 0}
+                          {(product.price || 0).toLocaleString()} {product.currency || 'KRW'}
                                         </span>
                                         {product.original_price && product.original_price > (product.price || 0) && (
                                             <>
                                                 <span className="text-xl text-muted-foreground line-through">
-                                                    ${product.original_price}
+                              {product.original_price.toLocaleString()} {product.currency || 'KRW'}
                                                 </span>
                                                 <Badge variant="destructive">
                                                     {product.discount_rate}% OFF
@@ -531,12 +531,12 @@ const ProductDetail = () => {
               <CardContent className="p-6">
                 <div className="flex items-baseline gap-3 mb-4">
                   <span className="text-4xl font-bold text-foreground">
-                    ${product.price || 0}
+                          {(product.price || 0).toLocaleString()} {product.currency || 'KRW'}
                   </span>
                   {product.original_price && product.original_price > (product.price || 0) && (
                     <>
                       <span className="text-xl text-muted-foreground line-through">
-                        ${product.original_price}
+                              {product.original_price.toLocaleString()} {product.currency || 'KRW'}
                       </span>
                       <Badge variant="destructive">
                         {product.discount_rate}% OFF
