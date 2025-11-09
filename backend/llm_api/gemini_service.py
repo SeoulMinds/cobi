@@ -36,7 +36,7 @@ class GeminiService:
             model=self.model,
             google_api_key=self.api_key,
             temperature=0.7,  # Balance between creativity and consistency
-            max_output_tokens=500,  # Limit response length
+            max_output_tokens=4096,  # Limit response length
             convert_system_message_to_human=True,  # Gemini requires this
         )
 
