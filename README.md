@@ -286,7 +286,6 @@ All configuration is in the root `.env` file:
 - `FRONTEND_URL` - Frontend URL for CORS (auto-configured from FRONTEND_PORT)
 
 ##### Security
-- `JWT_SECRET` - Secret key for JWT tokens
 - `SESSION_SECRET` - Secret key for session management
 - `BCRYPT_ROUNDS` - Password hashing rounds
 
@@ -422,3 +421,9 @@ SHOPPING_ASSISTANT_SYSTEM_PROMPT = """You are COBI, a helpful shopping assistant
 
 ## Learn More
 - [More Documentation about Feature](/docs/README.md)
+
+## Contributers
+- @MussaCharles
+- @imbibekk
+- @EdenKangdw
+- @Jayun Won
