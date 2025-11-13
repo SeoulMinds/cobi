@@ -13,6 +13,14 @@ An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
 
 ---
 
+## Demo & pitch deck
+
+- Demo video:
+
+![Cobi Demo](./assets/cobi_demo_final.mp4)
+
+- Pitch deck: [Cobi_HackSeoul2025_PitchDeck.pdf](./assets/hackseoul2025%20pitch%20deck_v2.pdf)
+
 ## Getting Started
 
 ### Prerequisites
