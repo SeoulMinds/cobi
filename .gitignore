@@ -144,3 +144,4 @@ tailwind.output.css
 
 changes.txt
 .env.production
+**/.DS_Store

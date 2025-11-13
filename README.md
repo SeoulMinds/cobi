@@ -1,6 +1,6 @@
 # SeoulMinds (Cobi)
 
-An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
+PoC of an AI-powered eCommerce platform, originally prototyped in 24 hours during HackSeoul 2025, aimed at solving fashion eCommerce’s return crisis with conversational AI.
 
 **Tech Stack:**
 - 🔙 **Backend:** FastAPI + Python 3.11 + MongoDB + Motor (async driver)
@@ -9,9 +9,14 @@ An AI-powered eCommerce platform built in 24 hours for **HackSeoul 2025**.
 - 🎨 **Frontend:** React 18 + Vite + TypeScript + TailwindCSS + shadcn/ui
 - 🗄️ **Database:** MongoDB 8.0 + Mongo Express (admin UI)
 - 🐳 **Containerization:** Docker & Docker Compose with Dev Containers
-- 🔐 **Security:** JWT authentication, bcrypt password hashing
 
 ---
+
+## Demo & pitch deck
+
+- [Watch the demo on YouTube](https://www.youtube.com/watch?v=3dTLdfLR3xM)
+- [Downloadable Demo Video (MP4)](./assets/cobi_demo_final.mp4)
+- [Pitch deck](./assets/hackseoul2025%20pitch%20deck_v2.pdf)
 
 ## Getting Started
 
